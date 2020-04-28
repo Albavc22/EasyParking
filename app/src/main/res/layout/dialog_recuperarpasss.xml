@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:background="@android:color/holo_blue_bright"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/titulo_dialog"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="30dp"
+        android:text="Recuperar contraseña"
+        android:textAlignment="center"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/cuerpo_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:textAlignment="center"
+        android:text="Introduzca su email y le enviaremos un correo para que pueda recuperar su contraseña"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="2dp"
+        android:hint="Email"
+        android:inputType="textEmailAddress" />
+
+    <TextView
+        android:id="@+id/errorEmail"
+        android:textColor="@android:color/holo_red_light"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4px"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="10px"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnCancelar"
+            android:layout_weight="1"
+            android:background="@android:color/holo_blue_bright"
+            android:textColor="@android:color/white"
+            android:text="CANCELAR" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnEnviar"
+            android:layout_weight="1"
+            android:background="@android:color/holo_blue_bright"
+            android:textColor="@android:color/darker_gray"
+            android:text="ENVIAR"
+            android:enabled="false" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/matricula_aparcamiento_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:textColor="@android:color/black"
+        android:text="3559FXS"/>
+
+    <TextView
+        android:id="@+id/modelo_aparcamiento_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:textSize="18dp"
+        android:textColor="@android:color/black"
+        android:text="Nissan Micra"/>
+
+    <TextView
+        android:id="@+id/fecha_aparcamiento_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:textSize="18dp"
+        android:textColor="@android:color/black"
+        android:text="24/04/2020"/>
+
+    <TextView
+        android:id="@+id/hora_aparcamiento_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:textSize="18dp"
+        android:textColor="@android:color/black"
+        android:text="17:39:04"/>
+
+    <TextView
+        android:id="@+id/calle_aparcamiento_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:textSize="18dp"
+        android:textColor="@android:color/black"
+        android:text="Calle Zafiro"/>
+
+    <TextView
+        android:id="@+id/zona_aparcamiento_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:textSize="18dp"
+        android:textColor="@android:color/black"
+        android:text="Zona gratis"
+        android:layout_marginBottom="8dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="@android:color/darker_gray" />
+
+</LinearLayout>

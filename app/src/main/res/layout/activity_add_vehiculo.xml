@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_bright"
+    tools:context=".AddVehiculoActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/title_activity_add_vehiculo"/>
+
+    <TextView
+        android:id="@+id/textView_datos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="89dp"
+        android:text="DATOS DEL VEHÍCULO"
+        android:textSize="18dp"
+        android:textColor="@android:color/black" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="125dp"
+        android:background="@android:color/white">
+
+        <TextView
+            android:id="@+id/textView_matricula"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="10dp"
+            android:text="Matrícula"
+            android:textSize="16dp"
+            android:textColor="@android:color/black" />
+
+        <EditText
+            android:id="@+id/matricula"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
+            android:hint="Matrícula"
+            android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/textView_modelo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="90dp"
+            android:text="Modelo"
+            android:textSize="16dp"
+            android:textColor="@android:color/black" />
+
+        <EditText
+            android:id="@+id/modelo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="110dp"
+            android:layout_marginEnd="20dp"
+            android:hint="Modelo"
+            android:singleLine="true" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/add_vehiculo"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="320dp"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/holo_blue_bright"
+        android:enabled="false"
+        android:text="AÑADIR VEHÍCULO"
+        android:textColor="@android:color/darker_gray"
+        android:textStyle="bold"
+        android:textSize="16dp"/>
+
+</RelativeLayout>

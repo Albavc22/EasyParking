@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_bright"
+    tools:context=".AparcamientoRegistradoActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/title_activity_aparcamiento_registrado"/>
+
+    <TextView
+        android:id="@+id/textView_datos_estacionamiento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="80dp"
+        android:text="DATOS DEL ESTACIONAMIENTO"
+        android:textSize="18dp"
+        android:textColor="@android:color/black" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="115dp"
+        android:background="@android:color/white">
+
+        <TextView
+            android:id="@+id/textView_matricula_estacionamiento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="10dp"
+            android:text="Matrícula del vehículo estacionado"
+            android:textSize="16dp"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/textView_matricula2_estacionamiento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="35dp"
+            android:textSize="17dp"
+            android:textColor="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/textView_modelo_estacionamiento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="80dp"
+            android:text="Modelo del vehículo estacionado"
+            android:textSize="16dp"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/textView_modelo2_estacionamiento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="105dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="17dp"
+            android:textColor="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/textView_fecha_estacionamiento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="150dp"
+            android:text="Fecha del estacionamiento"
+            android:textSize="16dp"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/textView_fecha2_estacionamiento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="175dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="17dp"
+            android:textColor="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/textView_hora_estacionamiento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="220dp"
+            android:text="Hora del estacionamiento"
+            android:textSize="16dp"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/textView_hora2_estacionamiento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="245dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="17dp"
+            android:textColor="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/textView_calle_estacionamiento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="290dp"
+            android:text="Calle del estacionamiento"
+            android:textSize="16dp"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/textView_calle2_estacionamiento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="315dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="17dp"
+            android:textColor="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/textView_zona_estacionamiento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="360dp"
+            android:text="Zona del estacionamiento"
+            android:textSize="16dp"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/textView_zona2_estacionamiento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="385dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="17dp"
+            android:textColor="@android:color/darker_gray" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/finalizar_estacionamiento"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="560dp"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/holo_blue_bright"
+        android:text="FINALIZAR ESTACIONAMIENTO"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:textSize="16dp"/>
+
+</RelativeLayout>

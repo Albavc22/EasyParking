@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_bright"
+    android:padding="15dp"
+    tools:context=".RegisterActivity">
+
+    <TextView
+        android:id="@+id/registrarse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="84dp"
+        android:text="Registrarse"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/check_nombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="5dp"
+        android:hint="Nombre"
+        android:inputType="textPersonName"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/check_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginEnd="5dp"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:singleLine="true" />
+    
+    <EditText
+        android:id="@+id/check_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="290dp"
+        android:layout_marginEnd="5dp"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/check_password2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="360dp"
+        android:layout_marginEnd="5dp"
+        android:hint="Repetir contraseña"
+        android:inputType="textPassword"
+        android:singleLine="true" />
+
+    <Button
+        android:id="@+id/check_button"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="470dp"
+        android:background="@android:color/holo_blue_bright"
+        android:text="REGISTRARSE"
+        android:enabled="false"
+        android:textColor="@android:color/darker_gray"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/errorPass"
+        android:textColor="@android:color/holo_red_light"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="405dp" />
+
+    <TextView
+        android:id="@+id/errorEmail"
+        android:textColor="@android:color/holo_red_light"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="265dp"/>
+</RelativeLayout>

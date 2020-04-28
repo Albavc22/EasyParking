@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_iniciarEstacionamiento"
+            android:icon="@drawable/iniciar_estacionamiento"
+            android:title="@string/iniciar_estacionamiento_item" />
+        <item
+            android:id="@+id/nav_estacionamientosCurso"
+            android:icon="@drawable/estacionamientos_curso"
+            android:title="@string/estacionamientos_curso_item" />
+        <item
+            android:id="@+id/nav_vehiculos"
+            android:icon="@drawable/vehiculos"
+            android:title="@string/vehiculos_item"/>
+        <item
+            android:id="@+id/nav_pagarParkings"
+            android:icon="@drawable/pagar_parkings"
+            android:title="@string/pagar_parkings_item" />
+
+        <!-- Sección de configuración -->
+        <item
+            android:id="@+id/configuration_section"
+            android:title="@string/opciones_conf_item">
+            <menu>
+                <item
+                    android:id="@+id/nav_switch"
+                    android:icon="@drawable/ic_satellite"
+                    android:title="Vista satélite"
+                    app:actionLayout="@layout/use_switch"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/nav_configuracion"
+                    android:icon="@drawable/configuracion"
+                    android:title="@string/configuracion_item" />
+                <item
+                    android:id="@+id/nav_cuenta"
+                    android:icon="@drawable/cuenta"
+                    android:title="@string/cuenta_item" />
+                <item
+                    android:id="@+id/nav_notificaciones"
+                    android:icon="@drawable/notificaciones"
+                    android:title="@string/notificaciones_item" />
+                <item
+                    android:id="@+id/nav_log_out"
+                    android:icon="@drawable/cerrar_sesion"
+                    android:title="@string/log_out_item" />
+            </menu>
+        </item>
+    </group>
+
+</menu>

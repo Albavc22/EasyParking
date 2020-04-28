@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">EasyParking</string>
+    <string name="title_activity_mapa">Mapa de aparcamientos</string>
+    <string name="title_activity_perfil">Editar Perfil</string>
+    <string name="title_activity_password">Contraseña</string>
+    <string name="title_activity_vehiculo">Vehículos</string>
+    <string name="title_activity_add_vehiculo">Añadir Vehículo</string>
+    <string name="title_activity_vehiculo_registrado">Vehículo Registrado</string>
+    <string name="title_activity_configuracion">Configuración</string>
+    <string name="title_activity_aparcamientos">Estacionamientos en curso</string>
+    <string name="title_activity_aparcamiento_registrado">Estacionamiento Registrado</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="iniciar_estacionamiento_item">Iniciar Estacionamiento</string>
+    <string name="estacionamientos_curso_item">Estacionamientos en Curso</string>
+    <string name="pagar_parkings_item">Pagar en Parkings</string>
+    <string name="vehiculos_item">Vehículos</string>
+    <string name="opciones_conf_item">Opciones de Configuración</string>
+    <string name="configuracion_item">Configuración</string>
+    <string name="cuenta_item">Editar Perfil</string>
+    <string name="notificaciones_item">Notificaciones</string>
+    <string name="log_out_item">Cerrar Sesión</string>
+
+    <string name="check_item">Check</string>
+    <string name="add_item">Add</string>
+</resources>
