@@ -6,7 +6,6 @@
     <string name="title_activity_vehiculo">Vehículos</string>
     <string name="title_activity_add_vehiculo">Añadir Vehículo</string>
     <string name="title_activity_vehiculo_registrado">Vehículo Registrado</string>
-    <string name="title_activity_configuracion">Configuración</string>
     <string name="title_activity_aparcamientos">Estacionamientos en curso</string>
     <string name="title_activity_aparcamiento_registrado">Estacionamiento Registrado</string>
 
@@ -17,7 +16,7 @@
     <string name="pagar_parkings_item">Pagar en Parkings</string>
     <string name="vehiculos_item">Vehículos</string>
     <string name="opciones_conf_item">Opciones de Configuración</string>
-    <string name="configuracion_item">Configuración</string>
+    <string name="configuracion_item">Cambiar Permisos</string>
     <string name="cuenta_item">Editar Perfil</string>
     <string name="notificaciones_item">Notificaciones</string>
     <string name="log_out_item">Cerrar Sesión</string>

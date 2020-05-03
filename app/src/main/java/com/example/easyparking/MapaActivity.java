@@ -60,13 +60,17 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MapaActivity extends AppCompatActivity implements OnMapReadyCallback {
 
+    private static final int RC_CAMERA_AND_LOCATION = 78;
     private GoogleMap gMap;
     private MapView mapView;
 
@@ -99,12 +103,19 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
     CircleOptions circulo1, circulo2;
     Circle circle1, circle2;
 
+    //Array para guardar los marcadores
+    HashMap<String, Marker> marcadores;
+
+    Boolean flag;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mapa);
 
-        Boolean flag = false;
+        flag = false;
+
+        marcadores = new HashMap<>();
         
         Bundle mapViewBundle = null;
         if (savedInstanceState != null) {
@@ -263,7 +274,7 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
 
         //Cargar marcadores
-        cargarMarcadores();
+        comprobarMarcadores();
     }
 
     @Override
@@ -297,6 +308,35 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case RC_CAMERA_AND_LOCATION: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    //Permitir la ubicacion
+                    gMap.setMyLocationEnabled(true);
+                } else {
+                    //Mostrar un alert dialog indicando que se necesita tener los permisos
+                    AlertDialog.Builder permisosUbicacion = new AlertDialog.Builder(MapaActivity.this);
+                    permisosUbicacion.setMessage("Se necesitan los permisos de ubicación para acceder a algunas funciones de la aplicación.")
+                            .setCancelable(false)
+                            .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+                    AlertDialog titulo = permisosUbicacion.create();
+                    titulo.setTitle("Permisos de ubicación");
+                    titulo.show();
+                    return;
+                }
+                return;
+            }
+        }
+    }
+
+
+    @Override
     public void onMapReady(GoogleMap googleMap) {
         gMap = googleMap;
 
@@ -304,23 +344,10 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (ActivityCompat.checkSelfPermission(MapaActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(MapaActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             //Mostrar un mensaje de error indicando que no se tienen los permisos
-            AlertDialog.Builder permisosUbicacion = new AlertDialog.Builder(MapaActivity.this);
-            permisosUbicacion.setMessage("La aplicación no tiene permisos de ubicación. Active los permisos para acceder a la aplicación")
-                    .setCancelable(false)
-                    .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            finish();
-                        }
-                    });
-            AlertDialog titulo = permisosUbicacion.create();
-            titulo.setTitle("Permisos de ubicación");
-            titulo.show();
-            return;
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, RC_CAMERA_AND_LOCATION);
+        } else {
+            gMap.setMyLocationEnabled(true);
         }
-
-        //Permitir la ubicacion
-        gMap.setMyLocationEnabled(true);
 
         //Asigno un nivel de zoom
         CameraUpdate ZoomCam = CameraUpdateFactory.zoomTo(19);
@@ -373,7 +400,7 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
                 final LayoutInflater inflater = getLayoutInflater();
                 final Aparcamiento marcador = (Aparcamiento) marker.getTag();
 
-                if (marcador.getAparcado()) { //Si el coche esta aparcado
+                if (marcador.getAparcado()) {
                     View view = inflater.inflate(R.layout.dialog_aparcamiento, null);
                     builder.setView(view);
                     final android.app.AlertDialog dialog = builder.create();
@@ -404,7 +431,6 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
                     hora.setText("Hora: " +tiempo[1]);
                     calle.setText("Calle: " +marcador.getCalle());
                     zona.setText("Zona: " +marcador.getZona());
-                    return true;
                 } else {
                     View view = inflater.inflate(R.layout.dialog_aparcamiento_finalizado, null);
                     builder.setView(view);
@@ -427,7 +453,7 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
                     SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
                     Date fechaInicial = null;
                     try {
-                       fechaInicial = format.parse(marcador.getFecha());
+                        fechaInicial = format.parse(marcador.getFecha());
                     } catch (ParseException ex) {
                         ex.printStackTrace();
                     }
@@ -452,13 +478,10 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
                     tiempo.setText("Tiempo que lleva libre: " +horasTranscurridas +":" +minutosTrancurridos +":" +segsTranscurridos);
                     calle.setText("Calle: " +marcador.getCalle());
                     zona.setText("Zona: " +marcador.getZona());
-                    return true;
                 }
+                return true;
             }
         });
-
-        //Cargar marcadores
-        cargarMarcadores();
     }
 
     private void añadirMarcador() {
@@ -472,7 +495,7 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
                 builder.setView(view);
                 final android.app.AlertDialog dialog = builder.create();
                 dialog.show();
-                rv = (RecyclerView) view.findViewById(R.id.recycler);
+                rv = view.findViewById(R.id.recycler);
                 rv.setLayoutManager(new LinearLayoutManager(MapaActivity.this));
 
                 btnAceptar = view.findViewById(R.id.btnAceptar);
@@ -569,6 +592,7 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
                         Marker aparacamiento = gMap.addMarker(new MarkerOptions().anchor(0.0f, 1.0f).position(latLng).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
                         //Asignar un objeto al marcador
                         aparacamiento.setTag(aparcamiento);
+                        marcadores.put(key, aparacamiento);
 
                         dialog.cancel();
                     }
@@ -590,22 +614,44 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
         return sdf.format(date);
     }
 
-    private void cargarMarcadores() {
+    private void comprobarMarcadores() {
         myRef.child(user.getUid()).child("aparcamientos en curso").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        Aparcamiento aparcamiento = snapshot.getValue(Aparcamiento.class);
-                        //Pongo el marcador
-                        LatLng latLng = new LatLng(aparcamiento.getLatitud(), aparcamiento.getLongitud());
-                        Marker marker = null;
-                        if (aparcamiento.getAparcado()) {
-                            marker = gMap.addMarker(new MarkerOptions().anchor(0.0f, 1.0f).position(latLng).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
-                        } else {
-                            marker = gMap.addMarker(new MarkerOptions().anchor(0.0f, 1.0f).position(latLng).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                        Aparcamiento aparcamiento, tag;
+                        Iterator iterator;
+                        Map.Entry marcador;
+                        Marker aparc;
+                        Boolean aparece = false;
+                        aparcamiento = snapshot.getValue(Aparcamiento.class);
+                        iterator = marcadores.entrySet().iterator();
+                        while (iterator.hasNext()) {
+                            marcador = (Map.Entry) iterator.next();
+                            if (marcador.getKey().equals(snapshot.getKey())) { //Si son el mismo marcador
+                                aparece = true;
+                                aparc = (Marker) marcador.getValue();
+                                tag = (Aparcamiento) aparc.getTag();
+                                if (!tag.getAparcado().equals(aparcamiento.getAparcado())) { //Si el coche ya no esta aparcado
+                                    aparc.setTag(aparcamiento); //Actualizo el tag del marcador
+                                    aparc.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                                }
+                            }
                         }
-                        marker.setTag(aparcamiento);
+
+                        if (aparece == false) {
+                            LatLng latLng = new LatLng(aparcamiento.getLatitud(), aparcamiento.getLongitud());
+                            Marker marker;
+                            if (aparcamiento.getAparcado()) {
+                                marker = gMap.addMarker(new MarkerOptions().anchor(0.0f, 1.0f).position(latLng).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+                            } else {
+                                marker = gMap.addMarker(new MarkerOptions().anchor(0.0f, 1.0f).position(latLng).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                            }
+                            marker.setTag(aparcamiento);
+                            String key = aparcamiento.getVehiculo().getMatricula().concat("_").concat(aparcamiento.getFecha());
+                            marcadores.put(key, marker);
+                        }
                     }
                 }
             }

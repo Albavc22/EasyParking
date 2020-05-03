@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,11 +40,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        buttonRegister = (Button) findViewById(R.id.register_button);
-        buttonSignIn = (Button) findViewById(R.id.signin_button);
-        buttonResPass = (Button) findViewById(R.id.password_button);
-        editTextEmail = (EditText) findViewById(R.id.login_email);
-        editTextPass = (EditText) findViewById(R.id.login_password);
+        buttonRegister = findViewById(R.id.register_button);
+        buttonSignIn = findViewById(R.id.signin_button);
+        buttonResPass = findViewById(R.id.password_button);
+        editTextEmail = findViewById(R.id.login_email);
+        editTextPass = findViewById(R.id.login_password);
         mAuth = FirebaseAuth.getInstance();
 
         buttonRegister.setOnClickListener(new View.OnClickListener() {
@@ -179,9 +178,10 @@ public class MainActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) { //Comprueba tanto cuando iniciamos sesion como cuando la cerramos
                 FirebaseUser user = firebaseAuth.getCurrentUser(); //FirebaseAuth.getInstance().getCurrentUser();
                 if (user != null) { //Si ha iniciado sesion
-                    //Log.i("SESION", "sesion iniciada con email: " +user.getEmail());
+                    Intent i = new Intent(MainActivity.this, MapaActivity.class);
+                    startActivity(i);
                 } else { //Si ha cerrado sesion
-                    Log.i("SESION", "sesion cerrada");
+                    //Log.i("SESION", "sesion cerrada");
                 }
             }
         };

@@ -226,6 +226,7 @@ public class RegisterActivity extends AppCompatActivity {
                     textViewErrorEmail.setText("La dirección de email ya está siendo usada por otra cuenta");
                     editTextEmail.requestFocus();
                     textViewErrorPass.setText("");
+                    mDialog.dismiss();
                 }
             }
         });

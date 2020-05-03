@@ -1,32 +1,30 @@
 package com.example.easyparking;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 public class AparcamientoRegistradoActivity extends AppCompatActivity {
 
-    TextView matricula, modelo, fecha, hora, calle, zona;
-    Button finalizarEstacionamiento;
+    TextView matricula, modelo, fecha, hora, calle, zona, zona_pago, precio_hora, duracion_estacionamiento, precio_total;
+    Button finalizarEstacionamiento, btnCancelar, btnRealizarPago;
 
     FirebaseDatabase database;
     DatabaseReference myRef;
@@ -57,7 +55,7 @@ public class AparcamientoRegistradoActivity extends AppCompatActivity {
         final String stringFecha = extras.getString("Fecha");
         final String stringHora = extras.getString("Hora");
         String stringCalle = extras.getString("Calle");
-        String stringZona = extras.getString("Zona");
+        final String stringZona = extras.getString("Zona");
 
         matricula.setText(stringMatricula);
         modelo.setText(stringModelo);
@@ -70,7 +68,7 @@ public class AparcamientoRegistradoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Poner en aparcamiento como finalizado en la base de datos
-                String key = stringMatricula.concat("_").concat(stringFecha).concat(" ").concat(stringHora);
+                /*String key = stringMatricula.concat("_").concat(stringFecha).concat(" ").concat(stringHora);
 
                 //Poner la hora a la que ha finalizado el aparcamiento
                 String fecha = obtenerFecha("dd-MM-yyyy HH:mm:ss");
@@ -93,6 +91,93 @@ public class AparcamientoRegistradoActivity extends AppCompatActivity {
                             AlertDialog titulo = estacionamientoFinalizado.create();
                             titulo.setTitle("Finalizar estacionamiento");
                             titulo.show();
+                        }
+                    }
+                });*/
+                //Mostrar los datos del pago
+                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(AparcamientoRegistradoActivity.this);
+                LayoutInflater inflater = getLayoutInflater();
+                final View view = inflater.inflate(R.layout.dialog_datos_pago, null);
+                builder.setView(view);
+                final android.app.AlertDialog dialog = builder.create();
+                dialog.show();
+                double precio = 0;
+                double precio_final = 0.00;
+
+                btnCancelar = view.findViewById(R.id.btnCancelar);
+                btnRealizarPago = view.findViewById(R.id.btnRealizarPago);
+                zona_pago = view.findViewById(R.id.zona_pago);
+                precio_hora = view.findViewById(R.id.precio_hora);
+                duracion_estacionamiento = view.findViewById(R.id.duracion_estacionamiento);
+                precio_total = view.findViewById(R.id.precio_total);
+
+                zona_pago.setText("Zona: " +stringZona);
+
+                if (stringZona.equalsIgnoreCase("Zona Verde")) { //Si esta en la zona verde
+                    precio = 0.85;
+                } else if (stringZona.equalsIgnoreCase("Zona Azul")) { //Si esta en la zona azul
+                    precio = 1.20;
+                }
+
+                precio_hora.setText("Precio por hora: " +precio +"€");
+
+                //Calcular el tiempo que ha estado el usuario en el aparcamiento
+                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                String fechaIni = stringFecha.concat(" ").concat(stringHora);
+                Date fechaInicial = null;
+                try {
+                    fechaInicial = format.parse(fechaIni);
+                } catch (ParseException ex) {
+                    ex.printStackTrace();
+                }
+
+                Calendar calendar = Calendar.getInstance();
+                final Date fechaFinal = calendar.getTime();
+                long diferencia = fechaFinal.getTime() - fechaInicial.getTime();
+
+                long segsMilli = 1000;
+                long minsMilli = segsMilli * 60;
+                long horasMilli = minsMilli * 60;
+
+                long horasTranscurridas = diferencia / horasMilli;
+                diferencia = diferencia % horasMilli;
+
+                long minutosTrancurridos = diferencia / minsMilli;
+                diferencia = diferencia % minsMilli;
+
+                long segsTranscurridos = diferencia / segsMilli;
+
+                //Poner información en el marcador
+                DecimalFormat df = new DecimalFormat("#.00");
+                duracion_estacionamiento.setText("Tiempo estacionado: " +horasTranscurridas +":" +minutosTrancurridos +":" +segsTranscurridos);
+
+                if (!stringZona.equalsIgnoreCase("Zona Gratis")) {
+                    precio_final = ((double)horasTranscurridas + ((double)minutosTrancurridos/60) + ((double)segsTranscurridos/3600)) * precio;
+                    precio_total.setText("Total a pagar: " +(df.format(precio_final)) +"€");
+                } else {
+                    precio_total.setText("Total a pagar: " +precio_final +"€");
+                }
+
+                btnCancelar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.cancel();
+                    }
+                });
+
+                btnRealizarPago.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (stringZona.equalsIgnoreCase("Zona Gratis")) { //Si el coche esta aparcado en la zona gratis
+                            //Poner en aparcamiento como finalizado en la base de datos
+                            String key = stringMatricula.concat("_").concat(stringFecha).concat(" ").concat(stringHora);
+                            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+
+                            myRef.child(user.getUid()).child("aparcamientos en curso").child(key).child("fecha").setValue(sdf.format(fechaFinal));
+
+                            myRef.child(user.getUid()).child("aparcamientos en curso").child(key).child("aparcado").setValue(false);
+                            dialog.cancel();
+                            finish();
                         }
                     }
                 });
