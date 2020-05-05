@@ -1,11 +1,15 @@
 package com.example.easyparking;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -14,7 +18,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.paypal.android.sdk.payments.PayPalConfiguration;
+import com.paypal.android.sdk.payments.PayPalPayment;
+import com.paypal.android.sdk.payments.PayPalService;
+import com.paypal.android.sdk.payments.PaymentActivity;
+import com.paypal.android.sdk.payments.PaymentConfirmation;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,6 +33,16 @@ import java.util.Date;
 
 public class AparcamientoRegistradoActivity extends AppCompatActivity {
 
+    //PayPal
+    private static final String CONFIG_CLIENT_ID = "ARF3aet7oo2C5EgjjO976EwB5Wom-XJvLNb4OkGVXkTfTJ9NFdMUp4kOhGUkX8XrjYOGPbm29vwq3cau";
+    private static final int REQUEST_CODE_PAYMENT = 1;
+    private static final String CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_SANDBOX;
+
+    private static PayPalConfiguration config = new PayPalConfiguration()
+            .environment(CONFIG_ENVIRONMENT)
+            .clientId(CONFIG_CLIENT_ID);
+
+
     TextView matricula, modelo, fecha, hora, calle, zona, zona_pago, precio_hora, duracion_estacionamiento, precio_total;
     Button finalizarEstacionamiento, btnCancelar, btnRealizarPago;
 
@@ -30,10 +50,33 @@ public class AparcamientoRegistradoActivity extends AppCompatActivity {
     DatabaseReference myRef;
     FirebaseUser user;
 
+    double precio_final;
+    String stringMatricula, stringModelo, stringFecha, stringHora, stringCalle, stringZona;
+    Date fechaFinal;
+    DecimalFormat df;
+
+    android.app.AlertDialog.Builder builder;
+    LayoutInflater inflater;
+    View view;
+    android.app.AlertDialog dialog;
+
+    @Override
+    protected void onDestroy() {
+        stopService(new Intent(this, PayPalService.class));
+        super.onDestroy();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aparcamiento_registrado);
+
+        df = new DecimalFormat("#.00");
+
+        //Start Paypal Service
+        Intent intent = new Intent(this, PayPalService.class);
+        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+        startService(intent);
 
         setToolbar(); //Setear Toolbar como action bar
 
@@ -50,12 +93,12 @@ public class AparcamientoRegistradoActivity extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
 
         Bundle extras = getIntent().getExtras();
-        final String stringMatricula = extras.getString("Matricula");
-        String stringModelo = extras.getString("Modelo");
-        final String stringFecha = extras.getString("Fecha");
-        final String stringHora = extras.getString("Hora");
-        String stringCalle = extras.getString("Calle");
-        final String stringZona = extras.getString("Zona");
+        stringMatricula = extras.getString("Matricula");
+        stringModelo = extras.getString("Modelo");
+        stringFecha = extras.getString("Fecha");
+        stringHora = extras.getString("Hora");
+        stringCalle = extras.getString("Calle");
+        stringZona = extras.getString("Zona");
 
         matricula.setText(stringMatricula);
         modelo.setText(stringModelo);
@@ -67,42 +110,15 @@ public class AparcamientoRegistradoActivity extends AppCompatActivity {
         finalizarEstacionamiento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Poner en aparcamiento como finalizado en la base de datos
-                /*String key = stringMatricula.concat("_").concat(stringFecha).concat(" ").concat(stringHora);
-
-                //Poner la hora a la que ha finalizado el aparcamiento
-                String fecha = obtenerFecha("dd-MM-yyyy HH:mm:ss");
-                //String hora = obtenerFecha("HH:mm:ss");
-                myRef.child(user.getUid()).child("aparcamientos en curso").child(key).child("fecha").setValue(fecha);
-
-                myRef.child(user.getUid()).child("aparcamientos en curso").child(key).child("aparcado").setValue(false).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            AlertDialog.Builder estacionamientoFinalizado = new AlertDialog.Builder(AparcamientoRegistradoActivity.this);
-                            estacionamientoFinalizado.setMessage("El estacionamiento ha sido finalizado con éxito")
-                                    .setCancelable(false)
-                                    .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            finish();
-                                        }
-                                    });
-                            AlertDialog titulo = estacionamientoFinalizado.create();
-                            titulo.setTitle("Finalizar estacionamiento");
-                            titulo.show();
-                        }
-                    }
-                });*/
                 //Mostrar los datos del pago
-                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(AparcamientoRegistradoActivity.this);
-                LayoutInflater inflater = getLayoutInflater();
-                final View view = inflater.inflate(R.layout.dialog_datos_pago, null);
+                builder = new android.app.AlertDialog.Builder(AparcamientoRegistradoActivity.this);
+                inflater = getLayoutInflater();
+                view = inflater.inflate(R.layout.dialog_datos_pago, null);
                 builder.setView(view);
-                final android.app.AlertDialog dialog = builder.create();
+                dialog = builder.create();
                 dialog.show();
                 double precio = 0;
-                double precio_final = 0.00;
+                precio_final = 0.00;
 
                 btnCancelar = view.findViewById(R.id.btnCancelar);
                 btnRealizarPago = view.findViewById(R.id.btnRealizarPago);
@@ -132,7 +148,7 @@ public class AparcamientoRegistradoActivity extends AppCompatActivity {
                 }
 
                 Calendar calendar = Calendar.getInstance();
-                final Date fechaFinal = calendar.getTime();
+                fechaFinal = calendar.getTime();
                 long diferencia = fechaFinal.getTime() - fechaInicial.getTime();
 
                 long segsMilli = 1000;
@@ -148,14 +164,13 @@ public class AparcamientoRegistradoActivity extends AppCompatActivity {
                 long segsTranscurridos = diferencia / segsMilli;
 
                 //Poner información en el marcador
-                DecimalFormat df = new DecimalFormat("#.00");
                 duracion_estacionamiento.setText("Tiempo estacionado: " +horasTranscurridas +":" +minutosTrancurridos +":" +segsTranscurridos);
 
                 if (!stringZona.equalsIgnoreCase("Zona Gratis")) {
                     precio_final = ((double)horasTranscurridas + ((double)minutosTrancurridos/60) + ((double)segsTranscurridos/3600)) * precio;
-                    precio_total.setText("Total a pagar: " +(df.format(precio_final)) +"€");
+                    precio_total.setText("Total a pagar: " +String.valueOf(df.format(precio_final)) +"€");
                 } else {
-                    precio_total.setText("Total a pagar: " +precio_final +"€");
+                    precio_total.setText("Total a pagar: " +String.valueOf(precio_final) +"€");
                 }
 
                 btnCancelar.setOnClickListener(new View.OnClickListener() {
@@ -178,11 +193,56 @@ public class AparcamientoRegistradoActivity extends AppCompatActivity {
                             myRef.child(user.getUid()).child("aparcamientos en curso").child(key).child("aparcado").setValue(false);
                             dialog.cancel();
                             finish();
+                        } else {
+                            processPayment(precio_final);
                         }
                     }
                 });
             }
         });
+    }
+
+    private void processPayment(Double precio) {
+        PayPalPayment payPalPayment = new PayPalPayment(new BigDecimal(String.valueOf(precio)), "EUR", "Pago de zona azul/verde", PayPalPayment.PAYMENT_INTENT_SALE);
+        Intent intent = new Intent(AparcamientoRegistradoActivity.this, PaymentActivity.class);
+        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+        intent.putExtra(PaymentActivity.EXTRA_PAYMENT, payPalPayment);
+        startActivityForResult(intent, REQUEST_CODE_PAYMENT);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_PAYMENT) {
+            if (resultCode == RESULT_OK) {
+                PaymentConfirmation confirmation = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
+                if (confirmation != null) {
+                    try {
+                        String paymentDetails = confirmation.toJSONObject().toString(4);
+                        startActivity(new Intent(this, PaymentDetails.class)
+                                .putExtra("PaymentDetails", paymentDetails)
+                                .putExtra("PaymentAmount", String.valueOf(df.format(precio_final)))
+                        );
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    //Poner en aparcamiento como finalizado en la base de datos
+                    String key = stringMatricula.concat("_").concat(stringFecha).concat(" ").concat(stringHora);
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+
+                    myRef.child(user.getUid()).child("aparcamientos en curso").child(key).child("fecha").setValue(sdf.format(fechaFinal));
+
+                    myRef.child(user.getUid()).child("aparcamientos en curso").child(key).child("aparcado").setValue(false);
+                    dialog.cancel();
+                    finish();
+                }
+            } else if (resultCode == Activity.RESULT_CANCELED) {
+                Toast.makeText(this, "Cancel", Toast.LENGTH_SHORT).show();
+            }
+        } else if (resultCode == PaymentActivity.RESULT_EXTRAS_INVALID) {
+            Toast.makeText(this, "Invalid", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     private void setToolbar() {
@@ -198,13 +258,5 @@ public class AparcamientoRegistradoActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return false;
-    }
-
-    private String obtenerFecha (String formato) {
-        Calendar calendar = Calendar.getInstance();
-        Date date = calendar.getTime();
-        SimpleDateFormat sdf;
-        sdf = new SimpleDateFormat(formato);
-        return sdf.format(date);
     }
 }

@@ -65,7 +65,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="25dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="75dp"
             android:text="Modelo del vehículo estacionado"
             android:textSize="16dp"
             android:textColor="@android:color/black" />
@@ -77,7 +77,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="105dp"
+            android:layout_marginTop="100dp"
             android:layout_marginBottom="10dp"
             android:textSize="17dp"
             android:textColor="@android:color/darker_gray" />
@@ -89,7 +89,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="25dp"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="140dp"
             android:text="Fecha del estacionamiento"
             android:textSize="16dp"
             android:textColor="@android:color/black" />
@@ -101,7 +101,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="175dp"
+            android:layout_marginTop="165dp"
             android:layout_marginBottom="10dp"
             android:textSize="17dp"
             android:textColor="@android:color/darker_gray" />
@@ -113,7 +113,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="25dp"
-            android:layout_marginTop="220dp"
+            android:layout_marginTop="205dp"
             android:text="Hora del estacionamiento"
             android:textSize="16dp"
             android:textColor="@android:color/black" />
@@ -125,7 +125,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="245dp"
+            android:layout_marginTop="230dp"
             android:layout_marginBottom="10dp"
             android:textSize="17dp"
             android:textColor="@android:color/darker_gray" />
@@ -137,7 +137,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="25dp"
-            android:layout_marginTop="290dp"
+            android:layout_marginTop="270dp"
             android:text="Calle del estacionamiento"
             android:textSize="16dp"
             android:textColor="@android:color/black" />
@@ -149,7 +149,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="315dp"
+            android:layout_marginTop="295dp"
             android:layout_marginBottom="10dp"
             android:textSize="17dp"
             android:textColor="@android:color/darker_gray" />
@@ -161,7 +161,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="25dp"
-            android:layout_marginTop="360dp"
+            android:layout_marginTop="335dp"
             android:text="Zona del estacionamiento"
             android:textSize="16dp"
             android:textColor="@android:color/black" />
@@ -173,7 +173,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="385dp"
+            android:layout_marginTop="360dp"
             android:layout_marginBottom="10dp"
             android:textSize="17dp"
             android:textColor="@android:color/darker_gray" />

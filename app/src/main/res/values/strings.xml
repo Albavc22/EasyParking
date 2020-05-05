@@ -8,6 +8,7 @@
     <string name="title_activity_vehiculo_registrado">Vehículo Registrado</string>
     <string name="title_activity_aparcamientos">Estacionamientos en curso</string>
     <string name="title_activity_aparcamiento_registrado">Estacionamiento Registrado</string>
+    <string name="title_activity_payment_details">Finalización del pago</string>
 
     <string name="action_settings">Settings</string>
 
