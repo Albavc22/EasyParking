@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) { //Comprueba tanto cuando iniciamos sesion como cuando la cerramos
                 FirebaseUser user = firebaseAuth.getCurrentUser(); //FirebaseAuth.getInstance().getCurrentUser();
-                if (user != null) { //Si ha iniciado sesion
+                if (user != null) { //Si el usuario ya ha iniciado sesion
                     Intent i = new Intent(MainActivity.this, MapaActivity.class);
                     startActivity(i);
                 } else { //Si ha cerrado sesion

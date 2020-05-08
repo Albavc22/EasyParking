@@ -73,6 +73,7 @@ public class AparcamientosActivity extends AppCompatActivity {
                 i.putExtra("Hora", tiempo[1]);
                 i.putExtra("Calle", aparcamientos.get(rv.getChildPosition(v)).getCalle());
                 i.putExtra("Zona", aparcamientos.get(rv.getChildPosition(v)).getZona());
+                i.putExtra("Precio", aparcamientos.get(rv.getChildPosition(v)).getPrecio());
                 startActivity(i);
             }
         });

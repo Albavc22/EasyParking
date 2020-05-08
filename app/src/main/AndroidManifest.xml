@@ -18,7 +18,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PaymentDetails"></activity>
+        <activity android:name=".AjustesActivity"></activity>
+        <activity android:name=".DatosParkingActivity" />
+        <activity android:name=".ParkingActivity" />
+        <activity
+            android:name=".Main2Activity"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".PaymentDetails" />
         <activity android:name=".AparcamientoRegistradoActivity" />
         <activity android:name=".AparcamientosActivity" />
         <activity android:name=".VehiculoRegistradoActivity" />

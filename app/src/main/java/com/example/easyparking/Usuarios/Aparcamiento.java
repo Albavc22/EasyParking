@@ -4,25 +4,35 @@ public class Aparcamiento {
 
     Vehiculo vehiculo;
     String fecha;
-    //String hora;
     Double latitud;
     Double longitud;
     String zona;
     String calle;
     Boolean aparcado;
+    double precio;
 
     public Aparcamiento() {
 
     }
-    public Aparcamiento(Vehiculo vehiculo, String fecha, Double latitud, Double longitud, String zona, String calle, Boolean aparcado) {
+
+    public Aparcamiento(Vehiculo vehiculo, String fecha, String zona, String calle, Boolean aparcado, double precio) {
         this.vehiculo = vehiculo;
         this.fecha = fecha;
-        //this.hora = hora;
+        this.zona = zona;
+        this.calle = calle;
+        this.aparcado = aparcado;
+        this.precio = precio;
+    }
+
+    public Aparcamiento(Vehiculo vehiculo, String fecha, Double latitud, Double longitud, String zona, String calle, Boolean aparcado, double precio) {
+        this.vehiculo = vehiculo;
+        this.fecha = fecha;
         this.latitud = latitud;
         this.longitud = longitud;
         this.zona = zona;
         this.calle = calle;
         this.aparcado = aparcado;
+        this.precio = precio;
     }
 
     public Vehiculo getVehiculo() {
@@ -40,14 +50,6 @@ public class Aparcamiento {
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
-
-    /*public String getHora() {
-        return hora;
-    }
-
-    public void setHora(String hora) {
-        this.hora = hora;
-    }*/
 
     public Double getLatitud() {
         return latitud;
@@ -87,5 +89,13 @@ public class Aparcamiento {
 
     public void setAparcado(Boolean aparcado) {
         this.aparcado = aparcado;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(float precio) {
+        this.precio = precio;
     }
 }

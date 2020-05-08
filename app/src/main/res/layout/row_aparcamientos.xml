@@ -12,8 +12,7 @@
         android:layout_marginTop="10dp"
         android:textStyle="bold"
         android:textSize="18dp"
-        android:textColor="@android:color/black"
-        android:text="3559FXS"/>
+        android:textColor="@android:color/black"/>
 
     <TextView
         android:id="@+id/modelo_aparcamiento_row"
@@ -21,8 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:textSize="18dp"
-        android:textColor="@android:color/black"
-        android:text="Nissan Micra"/>
+        android:textColor="@android:color/black"/>
 
     <TextView
         android:id="@+id/fecha_aparcamiento_row"
@@ -30,8 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:textSize="18dp"
-        android:textColor="@android:color/black"
-        android:text="24/04/2020"/>
+        android:textColor="@android:color/black"/>
 
     <TextView
         android:id="@+id/hora_aparcamiento_row"
@@ -39,8 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:textSize="18dp"
-        android:textColor="@android:color/black"
-        android:text="17:39:04"/>
+        android:textColor="@android:color/black"/>
 
     <TextView
         android:id="@+id/calle_aparcamiento_row"
@@ -48,8 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:textSize="18dp"
-        android:textColor="@android:color/black"
-        android:text="Calle Zafiro"/>
+        android:textColor="@android:color/black"/>
 
     <TextView
         android:id="@+id/zona_aparcamiento_row"
@@ -58,7 +53,6 @@
         android:layout_marginStart="30dp"
         android:textSize="18dp"
         android:textColor="@android:color/black"
-        android:text="Zona gratis"
         android:layout_marginBottom="8dp"/>
 
     <View

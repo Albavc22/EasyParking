@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_bright"
+    tools:context=".DatosParkingActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/title_activity_datos_parking"/>
+
+    <TextView
+        android:id="@+id/textView_datos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="80dp"
+        android:text="DATOS DEL PARKING"
+        android:textSize="18dp"
+        android:textColor="@android:color/black" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="115dp"
+        android:background="@android:color/white">
+
+        <TextView
+            android:id="@+id/textView_nombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="10dp"
+            android:text="Nombre"
+            android:textSize="16dp"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/textView_nombre2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="35dp"
+            android:textSize="17dp"
+            android:textColor="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/textView_calle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="75dp"
+            android:text="Calle"
+            android:textSize="16dp"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/textView_calle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="17dp"
+            android:textColor="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/textView_precio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="140dp"
+            android:text="Precio por hora"
+            android:textSize="16dp"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/textView_precio2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="165dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="17dp"
+            android:textColor="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/textView_horario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="205dp"
+            android:text="Horario de apertura"
+            android:textSize="16dp"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/textView_horario2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="230dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="17dp"
+            android:textColor="@android:color/darker_gray" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/iniciar_estacionamiento"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="430dp"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/holo_blue_bright"
+        android:text="INICIAR ESTACIONAMIENTO"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:textSize="16dp"/>
+
+</RelativeLayout>

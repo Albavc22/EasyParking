@@ -52,6 +52,7 @@ public class AparcamientoRegistradoActivity extends AppCompatActivity {
 
     double precio_final;
     String stringMatricula, stringModelo, stringFecha, stringHora, stringCalle, stringZona;
+    double precio;
     Date fechaFinal;
     DecimalFormat df;
 
@@ -71,7 +72,7 @@ public class AparcamientoRegistradoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aparcamiento_registrado);
 
-        df = new DecimalFormat("#.00");
+        df = new DecimalFormat("#0.00");
 
         //Start Paypal Service
         Intent intent = new Intent(this, PayPalService.class);
@@ -99,6 +100,7 @@ public class AparcamientoRegistradoActivity extends AppCompatActivity {
         stringHora = extras.getString("Hora");
         stringCalle = extras.getString("Calle");
         stringZona = extras.getString("Zona");
+        precio = extras.getDouble("Precio");
 
         matricula.setText(stringMatricula);
         modelo.setText(stringModelo);
@@ -117,7 +119,6 @@ public class AparcamientoRegistradoActivity extends AppCompatActivity {
                 builder.setView(view);
                 dialog = builder.create();
                 dialog.show();
-                double precio = 0;
                 precio_final = 0.00;
 
                 btnCancelar = view.findViewById(R.id.btnCancelar);
@@ -129,13 +130,7 @@ public class AparcamientoRegistradoActivity extends AppCompatActivity {
 
                 zona_pago.setText("Zona: " +stringZona);
 
-                if (stringZona.equalsIgnoreCase("Zona Verde")) { //Si esta en la zona verde
-                    precio = 0.85;
-                } else if (stringZona.equalsIgnoreCase("Zona Azul")) { //Si esta en la zona azul
-                    precio = 1.20;
-                }
-
-                precio_hora.setText("Precio por hora: " +precio +"€");
+                precio_hora.setText("Precio por hora: " +(df.format(precio)) +"€");
 
                 //Calcular el tiempo que ha estado el usuario en el aparcamiento
                 SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
@@ -203,7 +198,7 @@ public class AparcamientoRegistradoActivity extends AppCompatActivity {
     }
 
     private void processPayment(Double precio) {
-        PayPalPayment payPalPayment = new PayPalPayment(new BigDecimal(String.valueOf(precio)), "EUR", "Pago de zona azul/verde", PayPalPayment.PAYMENT_INTENT_SALE);
+        PayPalPayment payPalPayment = new PayPalPayment(new BigDecimal(String.valueOf(precio)), "EUR", "Pago de estacionamiento", PayPalPayment.PAYMENT_INTENT_SALE);
         Intent intent = new Intent(AparcamientoRegistradoActivity.this, PaymentActivity.class);
         intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
         intent.putExtra(PaymentActivity.EXTRA_PAYMENT, payPalPayment);

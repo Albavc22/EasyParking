@@ -3,6 +3,7 @@ package com.example.easyparking;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Address;
@@ -26,6 +27,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -106,14 +108,18 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
     //Array para guardar los marcadores
     HashMap<String, Marker> marcadores;
 
-    Boolean flag;
+    SharedPreferences preferences;
+
+    public static long duracionMarcador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mapa);
 
-        flag = false;
+        //Coger las preferencias
+        PreferenceManager.setDefaultValues(this, R.xml.preferencias, false);
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         marcadores = new HashMap<>();
         
@@ -196,9 +202,10 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
                         startActivity(new Intent(MapaActivity.this, VehiculoActivity.class));
                         break;
                     case R.id.nav_pagarParkings:
-                        Toast.makeText(MapaActivity.this, "La opción seleccionada es pagar en parkings", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(MapaActivity.this, ParkingActivity.class));
                         break;
                     case R.id.nav_configuracion:
+                        startActivity(new Intent(MapaActivity.this, AjustesActivity.class));
                         break;
                     case R.id.nav_cuenta:
                         startActivity(new Intent(MapaActivity.this, PerfilActivity.class));
@@ -543,8 +550,6 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
                     @Override
                     public void onClick(View v) {
                         //Obtener fecha y hora
-                        /*String fecha = obtenerFecha("dd-MM-yyyy");
-                        String hora = obtenerFecha("HH:mm:ss");*/
                         String fecha = obtenerFecha("dd-MM-yyyy HH:mm:ss");
 
                         //Obtener la calle en la que se encuentra en marcador
@@ -566,6 +571,7 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
                         //Comprobamos en que zona se ha añadido el marcador
                         String zona = null;
                         float[] disResultado = new float[2];
+                        double precio = 0.00;
 
                         Location.distanceBetween(latLng.latitude, latLng.longitude, circle1.getCenter().latitude, circle1.getCenter().longitude, disResultado);
                         if (disResultado[0] > circle1.getRadius()) {
@@ -577,14 +583,16 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
                             } else {
                                 //Esta en el segundo circulo
                                 zona = "Zona Verde";
+                                precio = 0.85;
                             }
                         } else {
                             //Esta en el primer circulo
                             zona = "Zona Azul";
+                            precio = 1.20;
                         }
 
                         //Escribir en aparcamiento en la base de datos
-                        Aparcamiento aparcamiento = new Aparcamiento(coche, fecha, latLng.latitude, latLng.longitude, zona, street, true);
+                        Aparcamiento aparcamiento = new Aparcamiento(coche, fecha, latLng.latitude, latLng.longitude, zona, street, true, precio);
                         String key = coche.getMatricula().concat("_").concat(fecha); //La clave de la base de datos consta de la matricula del coche, la fecha del aparcamiento y la hora del aparcamiento
                         myRef.child(user.getUid()).child("aparcamientos en curso").child(key).setValue(aparcamiento);
 
@@ -626,6 +634,7 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
                         Marker aparc;
                         Boolean aparece = false;
                         aparcamiento = snapshot.getValue(Aparcamiento.class);
+
                         iterator = marcadores.entrySet().iterator();
                         while (iterator.hasNext()) {
                             marcador = (Map.Entry) iterator.next();
@@ -640,7 +649,42 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
                             }
                         }
 
-                        if (aparece == false) {
+                        //Comprobamos si el marcador tiene que seguir apareciendo
+                        //Primero obtenemos las preferencias
+                        obtenerPreferencias(preferences);
+                        if (!aparcamiento.getAparcado()) { //Si el coche ya no esta aparcado
+                            //Calcular el tiempo que ha pasado desde que se ha finalizado el aparcamiento
+                            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                            String fechaIni = aparcamiento.getFecha();
+                            Date fechaInicial = null;
+                            try {
+                                fechaInicial = format.parse(fechaIni);
+                            } catch (ParseException ex) {
+                                ex.printStackTrace();
+                            }
+
+                            Calendar calendar = Calendar.getInstance();
+                            Date fechaFinal = calendar.getTime();
+                            long diferencia = fechaFinal.getTime() - fechaInicial.getTime();
+
+                            if (diferencia > duracionMarcador) { //Hay que quitar el marcador
+                                aparece = true;
+
+                                if (!marcadores.isEmpty()) {
+                                    Marker marker = marcadores.get(snapshot.getKey());
+
+                                    if (marker != null) {
+                                        marker.remove();
+                                    } else {
+                                        break;
+                                    }
+                                }
+                                myRef.child(user.getUid()).child("aparcamientos en curso").child(snapshot.getKey()).removeValue();
+                                marcadores.remove(snapshot.getKey());
+                            }
+                        }
+
+                        if (aparece == false && !aparcamiento.getZona().equalsIgnoreCase("Parking")) {
                             LatLng latLng = new LatLng(aparcamiento.getLatitud(), aparcamiento.getLongitud());
                             Marker marker;
                             if (aparcamiento.getAparcado()) {
@@ -661,5 +705,23 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             }
         });
+    }
+
+    public static void obtenerPreferencias (SharedPreferences preferences) {
+        String tiempo = preferences.getString("tiempoMarcadores", "15 minutos");
+
+        if (tiempo.equalsIgnoreCase("5 minutos")) {
+            duracionMarcador = 300000;
+        } else if (tiempo.equalsIgnoreCase("10 minutos")) {
+            duracionMarcador = 600000;
+        } else if (tiempo.equalsIgnoreCase("15 minutos")) {
+            duracionMarcador = 900000;
+        } else if (tiempo.equalsIgnoreCase("20 minutos")) {
+            duracionMarcador = 1200000;
+        } else if (tiempo.equalsIgnoreCase("30 minutos")) {
+            duracionMarcador = 1800000;
+        } else if (tiempo.equalsIgnoreCase("1 hora")) {
+            duracionMarcador = 3600000;
+        }
     }
 }
