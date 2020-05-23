@@ -37,7 +37,7 @@ public class AparcamientosActivity extends AppCompatActivity {
     DatabaseReference myRef;
     FirebaseUser user;
 
-    TextView textViewInfo1, textViewInfo2;
+    TextView textViewInfo1, textViewInfo2, textViewTitulo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +48,11 @@ public class AparcamientosActivity extends AppCompatActivity {
 
         textViewInfo1 = findViewById(R.id.info1_estacionamientos);
         textViewInfo2 = findViewById(R.id.info2_estacionamientos);
+        textViewTitulo = findViewById(R.id.textView_datos);
 
-        textViewInfo1.setText("Todavía no has iniciado ningún estacionamiento");
-        textViewInfo2.setText("Inicia un estacionamiento para comenzar");
+
+        textViewInfo1.setText(R.string.texto1);
+        textViewInfo2.setText(R.string.texto2);
 
         rv = findViewById(R.id.recycler_estacionamientos);
         rv.setLayoutManager(new LinearLayoutManager(this));
@@ -92,11 +94,13 @@ public class AparcamientosActivity extends AppCompatActivity {
                 }
                 adapterEstacionamientos.notifyDataSetChanged();
                 if (!aparcamientos.isEmpty()) {
+                    textViewTitulo.setText(R.string.estacionamientos_curso_item);
                     textViewInfo1.setText("");
                     textViewInfo2.setText("");
                 } else {
-                    textViewInfo1.setText("Todavía no has iniciado ningún estacionamiento");
-                    textViewInfo2.setText("Inicia un estacionamiento para comenzar");
+                    textViewInfo1.setText(R.string.texto1);
+                    textViewInfo2.setText(R.string.texto2);
+                    textViewTitulo.setText("");
                 }
             }
 

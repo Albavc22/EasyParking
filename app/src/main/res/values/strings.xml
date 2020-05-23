@@ -1,19 +1,17 @@
 <resources>
     <string name="app_name">EasyParking</string>
     <string name="title_activity_mapa">Mapa de aparcamientos</string>
-    <string name="title_activity_perfil">Editar Perfil</string>
     <string name="title_activity_password">Contraseña</string>
-    <string name="title_activity_vehiculo">Vehículos</string>
     <string name="title_activity_add_vehiculo">Añadir Vehículo</string>
     <string name="title_activity_vehiculo_registrado">Vehículo Registrado</string>
-    <string name="title_activity_aparcamientos">Estacionamientos en curso</string>
     <string name="title_activity_aparcamiento_registrado">Estacionamiento Registrado</string>
     <string name="title_activity_payment_details">Finalización del pago</string>
     <string name="title_activity_parking">Parkings</string>
     <string name="title_activity_datos_parking">Información del Parking</string>
     <string name="title_activity_ajustes">Ajustes</string>
-
-    <string name="action_settings">Settings</string>
+    <string name="title_activity_aparcamientos">Estacionamientos en Curso</string>
+    <string name="title_activity_perfil">Editar Perfil</string>
+    <string name="title_activity_vehiculo">Vehículos</string>
 
     <string name="iniciar_estacionamiento_item">Iniciar Estacionamiento</string>
     <string name="estacionamientos_curso_item">Estacionamientos en Curso</string>
@@ -24,23 +22,157 @@
     <string name="cuenta_item">Editar Perfil</string>
     <string name="notificaciones_item">Notificaciones</string>
     <string name="log_out_item">Cerrar Sesión</string>
+    <string name="vista_satelite">Vista Satélite</string>
+    <string name="ayuda_item">Ayuda</string>
 
-    <string name="check_item">Check</string>
-    <string name="add_item">Add</string>
-    <string name="title_activity_main2">Main2Activity</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
+    <string name="check_item" translatable="false">Check</string>
+    <string name="add_item" translatable="false">Add</string>
+    <string name="title_activity_main2" translatable="false">Main2Activity</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_tools">Tools</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
+    <!-- Activity AddVehiculo -->
+    <string name="datos_vehiculo">DATOS DEL VEHÍCULO</string>
+    <string name="matricula">Matrícula</string>
+    <string name="modelo">Modelo</string>
+    <string name="añadir_vehiculo">AÑADIR VEHÍCULO</string>
+    <string name="mensaje_exito">El vehículo ha sido añadido con éxito</string>
+
+    <!-- Activity AparcamientoRegistrado -->
+    <string name="datos_estacionamiento">DATOS DEL ESTACIONAMIENTO</string>
+    <string name="matricula_estacionado">Matrícula del vehículo estacionado</string>
+    <string name="modelo_estacionado">Modelo del vehículo estacionado</string>
+    <string name="fecha_estacionamiento">Fecha del estacionamiento</string>
+    <string name="hora_estacionamiento">Hora del estacionamiento</string>
+    <string name="calle_estacionamiento">Calle del estacionamiento</string>
+    <string name="zona_estacionamiento">Zona del estacionamiento</string>
+    <string name="finalizar_estacionamiento">Finalizar Estacionamiento</string>
+    <string name="tiempo_estacionado">Tiempo estacionado</string>
+    <string name="total_pagar">Total a pagar</string>
+    <string name="invalido">Inválido</string>
+
+    <!-- Activity Aparcamientos -->
+    <string name="texto1">Todavía no has iniciado ningún estacionamiento</string>
+    <string name="texto2">Inicia un estacionamiento para comenzar</string>
+
+    <!-- Activity DatosParking -->
+    <string name="datos_parking">DATOS DEL PARKING</string>
+    <string name="nombre">Nombre</string>
+    <string name="calle">Calle</string>
+    <string name="precio_hora">Precio por Hora</string>
+    <string name="horario_apertura">Horario de apertura</string>
+
+    <!-- Activity IniciarSesion -->
+    <string name="iniciar_sesion">Iniciar Sesión</string>
+    <string name="email">Email</string>
+    <string name="entrar">Entrar</string>
+    <string name="nueva_cuenta">Crear una nueva cuenta</string>
+    <string name="contraseña_olvidada">He olvidado mi contraseña</string>
+    <string name="send_password_exito">Se ha enviado un correo para restablecer tu contraseña</string>
+    <string name="send_password_fallo">No se pudo enviar el correo de restablecer contraseña ya que el email no está registrado</string>
+    <string name="email_no_valido">Email no válido</string>
+    <string name="error_email_titulo">Email no verificado</string>
+    <string name="error_email_mensaje2">La dirección de correo electrónico no ha sido verificada. Verifíquela si quiere acceder a la aplicación</string>
+    <string name="usuario_contraseña_incorrecto">Usuario o contraseña incorrecto</string>
+    <string name="fallo_inicio_sesion">Fallo en inicio de sesión</string>
+
+    <!-- Activity Mapa -->
+    <string name="iniciar_estacionamiento_mensaje">Para iniciar el estacionamiento pulse sobre el lugar en el que ha aparcado</string>
+    <string name="permisos_mensaje">Se necesitan los permisos de ubicación para acceder a algunas funciones de la aplicación.</string>
+    <string name="permisos_titulo">Permisos de ubicación</string>
+    <string name="tiempo_libre">Tiempo que lleva libre</string>
+
+    <!-- Activity Parking -->
+    <string name="listado_parkings">LISTADO DE PARKINGS</string>
+
+    <!-- Activity Password -->
+    <string name="contraseña_actual">Contraseña actual</string>
+    <string name="contraseña_nueva">Contraseña nueva</string>
+    <string name="repetir_contraseña_nueva">Repetir contraseña nueva</string>
+    <string name="campo_obligatorio">Este campo es obligatorio</string>
+    <string name="error_contraseñas_iguales">Las dos contraseñas deben de ser iguales</string>
+    <string name="error_contraseña_caracteres">La contraseña debe tener al menos 6 caracteres</string>
+    <string name="error_misma_contraseña">La contraseña actual y la nueva no pueden ser la misma</string>
+    <string name="contraseña_correcta">La contraseña ha sido cambiada con éxito</string>
+    <string name="contraseña_incorrecta">La contraseña es incorrecta</string>
+
+    <!-- Activity PaymenteDetails -->
+    <string name="detalles_pago">DETALLES DEL PAGO</string>
+    <string name="id_pago">ID del Pago</string>
+    <string name="cantidad_pagada">Cantidad Pagada</string>
+    <string name="estado_pago">Estado del Pago</string>
+
+    <!-- Activity Perfil -->
+    <string name="cambiar_foto">Cambiar foto de perfil</string>
+    <string name="eliminar_cuenta">Eliminar Cuenta</string>
+    <string name="cambiar_contraseña">Cambiar Contraseña</string>
+    <string name="eliminar_cuenta_mensaje">¿Está seguro de que desea eliminar la cuenta?</string>
+    <string name="datos_cambiado_mensaje">Los datos han sido cambiados correctamente</string>
+    <string name="modificar_datos">Modificacion de datos</string>
+    <string name="verificar_email_mensaje">Se le enviará un email a la dirección especificada para verificar la cuenta</string>
+    <string name="verificar_cuenta">Verificar la cuenta</string>
+    <string name="verificar_email_mensaje_error">No se ha podido enviar el correo de verificación al email especificado</string>
+    <string name="error_email_usado">La dirección de email ya está siendo usada por otra cuenta</string>
+
+    <!-- Activity Registrarse -->
+    <string name="registrarse">Registrarse</string>
+    <string name="repetir_contraseña">Repetir Contraseña</string>
+
+    <!-- Activity Vehiculo -->
+    <string name="vehiculos_registrados">VEHICULOS REGISTRADOS</string>
+    <string name="no_vehiculos_texto1">Todavía no has añadido ningún vehículo</string>
+    <string name="no_vehiculos_texto2">Añadir un vehículo para comenzar</string>
+
+    <!-- Activity VehiculoRegistrado -->
+    <string name="eliminar_vehiculo">Eliminar Vehiculo</string>
+    <string name="eliminar_vehiculo_mensaje">El vehículo ha sido eliminado con éxito</string>
+
+    <!-- Dialog Aparcamiento -->
+    <string name="aparcamiento_ocupado">Aparcamiento Ocupado</string>
+    <string name="aceptar">Aceptar</string>
+
+    <!-- Dialog AparcamientoFinalizado -->
+    <string name="aparcamiento_libre">Aparcamiento Libre</string>
+
+    <!-- Dialog DatosPago -->
+    <string name="datos_pago">Datos del Pago</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="realizar_pago">Realizar el Pago</string>
+
+    <!-- Dialog IniciarAparcamiento -->
+    <string name="textoAparcamiento">Indique el vehículo que quiere aparcar</string>
+
+    <!-- Dialog RecuperarContraseña -->
+    <string name="recuperar_contraseña">Recuperar Contraseña</string>
+    <string name="textoContraseña">Introduzca su email y le enviaremos un correo para que pueda recuperar su contraseña</string>
+    <string name="enviar">Enviar</string>
+
+    <!-- Preferencias -->
+    <string name="marcadores">MARCADORES</string>
+    <string name="duracion_marcadores">Duración Marcadores</string>
+    <string name="textoPreferencias">Seleccione el tiempo durante el que quiere que aparezcan los marcadores</string>
+
+    <!-- AdapterEstacionamiento -->
+    <string name="fecha">Fecha</string>
+    <string name="hora">Hora</string>
+    <string name="zona">Zona</string>
+
+    <!-- Arrays -->
+    <string name="cinco_minutos">5 minutos</string>
+    <string name="diez_minutos">10 minutos</string>
+    <string name="quince_minutos">15 minutos</string>
+    <string name="veinte_minutos">20 minutos</string>
+    <string name="treinta_minutos">30 minutos</string>
+    <string name="una_hora">1 hora</string>
+    <string name="title_activity_contenedor_instrucciones">ContenedorInstruccionesActivity</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="texto_instrucciones_introduccion">EasyParking es una aplicación que permite encontrar sitios para aparcar de manera rápida y sencilla al igual que permite realizar pagos en diversas zonas a través del móvil</string>
+    <string name="texto_instrucciones_vehiculo">Registra los vehículos de los que dispones</string>
+    <string name="texto_instrucciones_perfil">Esta opción te permite modificar tus datos y poder eliminar tu cuenta cuando desees</string>
+    <string name="texto_instrucciones_iniciar_aparcamiento">Indica el lugar en el que has aparcado y el vehículo con el que lo has hecho</string>
+    <string name="texto_instrucciones_estacionamientos_curso">Consulta los estacionamientos que tienes en curso tanto en la calle como en los parkings. Dentro de esta opción también tendrás la posibilidad de finalizar tus estacionamientos pagando el importe requerido a través del móvil</string>
+    <string name="texto_instrucciones_estacionamiento_parkings">Inicia un estacionamiento en cualquiera de los parkings privados de la ciudad y paga tu estancia a través del móvil</string>
+    <string name="texto_instrucciones_ayuda">¿Aún no te queda claro como funciona la aplicación? No te preocupes, desde aquí podrás regresar a consultar las instrucciones de la aplicación</string>
+    <string name="texto_instrucciones_ajustes">Ajusta el tiempo que se mantienen los marcadores en el mapa una vez finalizado el estacionamiento</string>
+    <string name="terminar">Terminar</string>
+
 </resources>

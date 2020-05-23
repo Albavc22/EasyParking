@@ -20,7 +20,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:textSize="18dp"
-        android:textColor="@android:color/black"/>
+        android:textColor="@android:color/black"
+        android:text="@string/modelo"/>
 
     <TextView
         android:id="@+id/fecha_aparcamiento_row"
@@ -28,7 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:textSize="18dp"
-        android:textColor="@android:color/black"/>
+        android:textColor="@android:color/black"
+        android:text="@string/fecha"/>
 
     <TextView
         android:id="@+id/hora_aparcamiento_row"
@@ -36,7 +38,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:textSize="18dp"
-        android:textColor="@android:color/black"/>
+        android:textColor="@android:color/black"
+        android:text="@string/hora"/>
 
     <TextView
         android:id="@+id/calle_aparcamiento_row"
@@ -44,7 +47,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:textSize="18dp"
-        android:textColor="@android:color/black"/>
+        android:textColor="@android:color/black"
+        android:text="@string/calle"/>
 
     <TextView
         android:id="@+id/zona_aparcamiento_row"
@@ -53,6 +57,7 @@
         android:layout_marginStart="30dp"
         android:textSize="18dp"
         android:textColor="@android:color/black"
+        android:text="@string/zona"
         android:layout_marginBottom="8dp"/>
 
     <View

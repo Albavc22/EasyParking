@@ -35,11 +35,11 @@ public class AdapterEstacionamientos extends RecyclerView.Adapter<AdapterEstacio
         Aparcamiento aparcamiento = aparcamientoList.get(position);
         String[] tiempo = aparcamiento.getFecha().split(" ");
         holder.matricula.setText(aparcamiento.getVehiculo().getMatricula());
-        holder.modelo.setText("Modelo: " +aparcamiento.getVehiculo().getModelo());
-        holder.fecha.setText("Fecha: " +tiempo[0]);
-        holder.hora.setText("Hora: " +tiempo[1]);
-        holder.calle.setText("Calle: " +aparcamiento.getCalle());
-        holder.zona.setText("Zona: " +aparcamiento.getZona());
+        holder.modelo.append(": " +aparcamiento.getVehiculo().getModelo());
+        holder.fecha.append(": " +tiempo[0]);
+        holder.hora.append(": " +tiempo[1]);
+        holder.calle.append(": " +aparcamiento.getCalle());
+        holder.zona.append(": " +aparcamiento.getZona());
     }
 
     @Override

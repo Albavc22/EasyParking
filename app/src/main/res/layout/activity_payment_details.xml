@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_bright"
+    android:background="@color/colorBackgroud"
     tools:context=".PaymentDetails">
 
     <androidx.appcompat.widget.Toolbar
@@ -25,7 +25,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="30dp"
         android:layout_marginTop="80dp"
-        android:text="DETALLES DEL PAGO"
+        android:text="@string/detalles_pago"
         android:textSize="18dp"
         android:textColor="@android:color/black" />
 
@@ -43,7 +43,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="25dp"
             android:layout_marginTop="10dp"
-            android:text="ID del Pago"
+            android:text="@string/id_pago"
             android:textSize="16dp"
             android:textColor="@android:color/black" />
 
@@ -66,7 +66,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="25dp"
             android:layout_marginTop="75dp"
-            android:text="Cantidad Pagada"
+            android:text="@string/cantidad_pagada"
             android:textSize="16dp"
             android:textColor="@android:color/black" />
 
@@ -90,7 +90,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="25dp"
             android:layout_marginTop="140dp"
-            android:text="Estado del Pago"
+            android:text="@string/estado_pago"
             android:textSize="16dp"
             android:textColor="@android:color/black" />
 

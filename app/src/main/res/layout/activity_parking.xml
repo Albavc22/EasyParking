@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_bright"
+    android:background="@color/colorBackgroud"
     tools:context=".ParkingActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -25,7 +25,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="30dp"
         android:layout_marginTop="80dp"
-        android:text="LISTADO DE PARKINGS"
+        android:text="@string/listado_parkings"
         android:textSize="18dp"
         android:textColor="@android:color/black" />
 
@@ -35,6 +35,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="115dp"
         android:id="@+id/recycler"/>
 </RelativeLayout>

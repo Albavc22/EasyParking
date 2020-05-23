@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        setToolbar(); //Setear Toolbar como action bar
 
         buttonRegister = findViewById(R.id.register_button);
         buttonSignIn = findViewById(R.id.signin_button);
@@ -119,11 +122,11 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(MainActivity.this, "Se ha enviado un correo para reestablecer tu contraseña", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(MainActivity.this, R.string.send_password_exito, Toast.LENGTH_SHORT).show();
                                         dialog.cancel();
                                     } else {
                                         //Informar de que no se ha podido enviar el correo
-                                        Toast.makeText(MainActivity.this, "No se pudo enviar el correo de restablecer contraseña ya que el email no está registrado", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(MainActivity.this, R.string.send_password_fallo, Toast.LENGTH_SHORT).show();
                                     }
 
                                     mDialog.dismiss();
@@ -131,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
                             });
 
                         } else { //Si el email que hemos introducido no es valido
-                            textViewErrorEmail.setText("Email no válido");
+                            textViewErrorEmail.setText(R.string.email_no_valido);
                         }
                     }
                 });
@@ -187,17 +190,26 @@ public class MainActivity extends AppCompatActivity {
         };
     }
 
+    private void setToolbar() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        /*final ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setDisplayHomeAsUpEnabled(true);
+        }*/
+    }
+
     private void habilitarBoton () {
         if ((!editTextPass.getText().toString().isEmpty()) && (!editTextEmail.getText().toString().isEmpty())) {
             buttonSignIn.setEnabled(true);
-            buttonSignIn.setTextColor(Color.WHITE);
+            //buttonSignIn.setTextColor(Color.WHITE);
         } else {
             buttonSignIn.setEnabled(false);
-            buttonSignIn.setTextColor(Color.parseColor("#9E9E9E"));
+            //buttonSignIn.setTextColor(Color.parseColor("#9E9E9E"));
         }
     }
 
-    private void iniciarSesion (final String email, String pass) {
+    private void iniciarSesion (final String email, final String pass) {
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -208,31 +220,31 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(i);
                     } else {
                         AlertDialog.Builder errorEmailVerification = new AlertDialog.Builder(MainActivity.this);
-                        errorEmailVerification.setMessage("La dirección de correo electrónico no ha sido verificada. Verifíquela si quiere acceder a la aplicación")
+                        errorEmailVerification.setMessage(R.string.error_email_mensaje2)
                                 .setCancelable(false)
-                                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                .setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         dialog.cancel();
                                     }
                                 });
                         AlertDialog titulo = errorEmailVerification.create();
-                        titulo.setTitle("Email no verificado");
+                        titulo.setTitle(R.string.error_email_titulo);
                         titulo.show();
                     }
 
                 } else {
                     AlertDialog.Builder errorSignIn = new AlertDialog.Builder(MainActivity.this);
-                    errorSignIn.setMessage("Usuario o contraseña incorrecto")
+                    errorSignIn.setMessage(R.string.usuario_contraseña_incorrecto)
                             .setCancelable(false)
-                            .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                            .setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     dialog.cancel();
                                 }
                             });
                     AlertDialog titulo = errorSignIn.create();
-                    titulo.setTitle("Fallo en inicio de sesión");
+                    titulo.setTitle(R.string.fallo_inicio_sesion);
                     titulo.show();
                 }
             }

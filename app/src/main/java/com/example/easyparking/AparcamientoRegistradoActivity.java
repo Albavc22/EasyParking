@@ -128,9 +128,9 @@ public class AparcamientoRegistradoActivity extends AppCompatActivity {
                 duracion_estacionamiento = view.findViewById(R.id.duracion_estacionamiento);
                 precio_total = view.findViewById(R.id.precio_total);
 
-                zona_pago.setText("Zona: " +stringZona);
+                zona_pago.append(": " +stringZona);
 
-                precio_hora.setText("Precio por hora: " +(df.format(precio)) +"€");
+                precio_hora.append(": " +(df.format(precio)) +"€");
 
                 //Calcular el tiempo que ha estado el usuario en el aparcamiento
                 SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
@@ -159,13 +159,13 @@ public class AparcamientoRegistradoActivity extends AppCompatActivity {
                 long segsTranscurridos = diferencia / segsMilli;
 
                 //Poner información en el marcador
-                duracion_estacionamiento.setText("Tiempo estacionado: " +horasTranscurridas +":" +minutosTrancurridos +":" +segsTranscurridos);
+                duracion_estacionamiento.append(": " +horasTranscurridas +":" +minutosTrancurridos +":" +segsTranscurridos);
 
                 if (!stringZona.equalsIgnoreCase("Zona Gratis")) {
                     precio_final = ((double)horasTranscurridas + ((double)minutosTrancurridos/60) + ((double)segsTranscurridos/3600)) * precio;
-                    precio_total.setText("Total a pagar: " +String.valueOf(df.format(precio_final)) +"€");
+                    precio_total.append(": " +String.valueOf(df.format(precio_final)) +"€");
                 } else {
-                    precio_total.setText("Total a pagar: " +String.valueOf(precio_final) +"€");
+                    precio_total.append(": " +String.valueOf(precio_final) +"€");
                 }
 
                 btnCancelar.setOnClickListener(new View.OnClickListener() {
@@ -232,10 +232,10 @@ public class AparcamientoRegistradoActivity extends AppCompatActivity {
                     finish();
                 }
             } else if (resultCode == Activity.RESULT_CANCELED) {
-                Toast.makeText(this, "Cancel", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.cancelar, Toast.LENGTH_SHORT).show();
             }
         } else if (resultCode == PaymentActivity.RESULT_EXTRAS_INVALID) {
-            Toast.makeText(this, "Invalid", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.invalido, Toast.LENGTH_SHORT).show();
         }
 
     }

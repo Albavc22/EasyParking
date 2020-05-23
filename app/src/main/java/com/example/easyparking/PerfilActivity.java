@@ -67,13 +67,13 @@ public class PerfilActivity extends AppCompatActivity {
 
         setToolbar(); //Setear Toolbar como action bar
 
-        editTextNombre = (EditText) findViewById(R.id.editText_nombre);
-        editTextEmail = (EditText) findViewById(R.id.editText_email);
-        circleImageView = (CircleImageView) findViewById(R.id.profile_image);
-        buttonCambiarImagen = (Button) findViewById(R.id.cambiar_foto);
-        textViewErrorEmail = (TextView) findViewById(R.id.errorEmail);
-        buttonEliminarCuenta = (Button) findViewById(R.id.eliminar_cuenta);
-        buttonCambiarPass = (Button) findViewById(R.id.cambiar_password);
+        editTextNombre = findViewById(R.id.editText_nombre);
+        editTextEmail = findViewById(R.id.editText_email);
+        circleImageView = findViewById(R.id.profile_image);
+        buttonCambiarImagen = findViewById(R.id.cambiar_foto);
+        textViewErrorEmail = findViewById(R.id.errorEmail);
+        buttonEliminarCuenta = findViewById(R.id.eliminar_cuenta);
+        buttonCambiarPass = findViewById(R.id.cambiar_password);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
@@ -116,9 +116,9 @@ public class PerfilActivity extends AppCompatActivity {
            @Override
            public void onClick(View v) {
                AlertDialog.Builder eliminarCuenta = new AlertDialog.Builder(PerfilActivity.this);
-               eliminarCuenta.setMessage("¿Está seguro de que desea eliminar la cuenta?")
+               eliminarCuenta.setMessage(R.string.eliminar_cuenta_mensaje)
                        .setCancelable(false)
-                       .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                       .setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
                            @Override
                            public void onClick(DialogInterface dialog, int which) {
                                user.delete();
@@ -130,14 +130,14 @@ public class PerfilActivity extends AppCompatActivity {
                                startActivity(i);
                            }
                        })
-                       .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                       .setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
                            @Override
                            public void onClick(DialogInterface dialog, int which) {
                                dialog.cancel();
                            }
                });
                AlertDialog titulo = eliminarCuenta.create();
-               titulo.setTitle("Eliminar cuenta");
+               titulo.setTitle(R.string.eliminar_cuenta);
                titulo.show();
            }
        });
@@ -198,16 +198,16 @@ public class PerfilActivity extends AppCompatActivity {
 
             if ((editTextEmail.getText().toString()).equalsIgnoreCase(user.getEmail())) { //Si el correo no se ha cambiado
                 AlertDialog.Builder emailVerification = new AlertDialog.Builder(PerfilActivity.this);
-                emailVerification.setMessage("Los datos han sido cambiados correctamente")
+                emailVerification.setMessage(R.string.datos_cambiado_mensaje)
                         .setCancelable(false)
-                        .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        .setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 finish();
                             }
                         });
                 AlertDialog titulo = emailVerification.create();
-                titulo.setTitle("Modificacion de datos");
+                titulo.setTitle(R.string.modificar_datos);
                 titulo.show();
             }
         }
@@ -225,9 +225,9 @@ public class PerfilActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) { //Si se puede enviar el correo de verificación al usuario
                                         AlertDialog.Builder emailVerification = new AlertDialog.Builder(PerfilActivity.this);
-                                        emailVerification.setMessage("Se le enviará un email a la dirección especificada para verificar la cuenta")
+                                        emailVerification.setMessage(R.string.verificar_email_mensaje)
                                                 .setCancelable(false)
-                                                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                                .setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
                                                     @Override
                                                     public void onClick(DialogInterface dialog, int which) {
                                                         //Modificar el email en la base de datos
@@ -238,20 +238,20 @@ public class PerfilActivity extends AppCompatActivity {
                                                     }
                                                 });
                                         AlertDialog titulo = emailVerification.create();
-                                        titulo.setTitle("Verificar la cuenta");
+                                        titulo.setTitle(R.string.verificar_cuenta);
                                         titulo.show();
                                     } else { //Si no se puede mandar el correo de verificación al usuario
                                         AlertDialog.Builder emailVerification = new AlertDialog.Builder(PerfilActivity.this);
-                                        emailVerification.setMessage("No se ha podido enviar el correo de verificación al email especificado")
+                                        emailVerification.setMessage(R.string.verificar_email_mensaje_error)
                                                 .setCancelable(false)
-                                                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                                .setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
                                                     @Override
                                                     public void onClick(DialogInterface dialog, int which) {
                                                         dialog.cancel();
                                                     }
                                                 });
                                         AlertDialog titulo = emailVerification.create();
-                                        titulo.setTitle("Verificar la cuenta");
+                                        titulo.setTitle(R.string.verificar_cuenta);
                                         titulo.show();
                                     }
                                 }
@@ -259,13 +259,13 @@ public class PerfilActivity extends AppCompatActivity {
 
                         } else {
                             //Controlar que el email no este ya registrado
-                            textViewErrorEmail.setText("La dirección de email ya está siendo usada por otra cuenta");
+                            textViewErrorEmail.setText(R.string.error_email_usado);
                             editTextEmail.requestFocus();
                         }
                     }
                 });
             } else {
-                textViewErrorEmail.setText("Email no válido");
+                textViewErrorEmail.setText(R.string.email_no_valido);
                 editTextEmail.requestFocus();
             }
 

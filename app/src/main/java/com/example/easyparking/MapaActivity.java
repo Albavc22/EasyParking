@@ -17,7 +17,6 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -182,16 +181,16 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
                     case R.id.nav_iniciarEstacionamiento:
                         //Mostrar un mensaje indicando como se tiene que iniciar el estacionamiento
                         android.app.AlertDialog.Builder inciarEstacionamiento = new android.app.AlertDialog.Builder(MapaActivity.this);
-                        inciarEstacionamiento.setMessage("Para iniciar el estacionamiento pulse sobre el lugar en el que ha aparcado")
+                        inciarEstacionamiento.setMessage(R.string.iniciar_estacionamiento_mensaje)
                                 .setCancelable(false)
-                                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                .setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         dialog.cancel();
                                     }
                                 });
                         android.app.AlertDialog titulo = inciarEstacionamiento.create();
-                        titulo.setTitle("Iniciar estacionamiento");
+                        titulo.setTitle(R.string.iniciar_estacionamiento_item);
                         titulo.show();
                         añadirMarcador();
                         break;
@@ -210,8 +209,8 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
                     case R.id.nav_cuenta:
                         startActivity(new Intent(MapaActivity.this, PerfilActivity.class));
                         break;
-                    case R.id.nav_notificaciones:
-                        Toast.makeText(MapaActivity.this, "La opción seleccionada es notificaciones", Toast.LENGTH_SHORT).show();
+                    case R.id.nav_ayuda:
+                        startActivity(new Intent(MapaActivity.this, ContenedorInstruccionesActivity.class));
                         break;
                     case R.id.nav_log_out:
                         FirebaseAuth.getInstance().signOut();
@@ -324,16 +323,16 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
                 } else {
                     //Mostrar un alert dialog indicando que se necesita tener los permisos
                     AlertDialog.Builder permisosUbicacion = new AlertDialog.Builder(MapaActivity.this);
-                    permisosUbicacion.setMessage("Se necesitan los permisos de ubicación para acceder a algunas funciones de la aplicación.")
+                    permisosUbicacion.setMessage(R.string.permisos_mensaje)
                             .setCancelable(false)
-                            .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                            .setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     dialog.cancel();
                                 }
                             });
                     AlertDialog titulo = permisosUbicacion.create();
-                    titulo.setTitle("Permisos de ubicación");
+                    titulo.setTitle(R.string.permisos_titulo);
                     titulo.show();
                     return;
                 }
@@ -432,12 +431,12 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
                     String[] tiempo = marcador.getFecha().split(" ");
 
                     //Poner información en el marcador
-                    matricula.setText("Matrícula: " +marcador.getVehiculo().getMatricula());
-                    modelo.setText("Modelo: " +marcador.getVehiculo().getModelo());
-                    fecha.setText("Fecha: " +tiempo[0]);
-                    hora.setText("Hora: " +tiempo[1]);
-                    calle.setText("Calle: " +marcador.getCalle());
-                    zona.setText("Zona: " +marcador.getZona());
+                    matricula.append(": " +marcador.getVehiculo().getMatricula());
+                    modelo.append(": " +marcador.getVehiculo().getModelo());
+                    fecha.append(": " +tiempo[0]);
+                    hora.append(": " +tiempo[1]);
+                    calle.append(": " +marcador.getCalle());
+                    zona.append(": " +marcador.getZona());
                 } else {
                     View view = inflater.inflate(R.layout.dialog_aparcamiento_finalizado, null);
                     builder.setView(view);
@@ -482,9 +481,9 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
                     long segsTranscurridos = diferencia / segsMilli;
 
                     //Poner información en el marcador
-                    tiempo.setText("Tiempo que lleva libre: " +horasTranscurridas +":" +minutosTrancurridos +":" +segsTranscurridos);
-                    calle.setText("Calle: " +marcador.getCalle());
-                    zona.setText("Zona: " +marcador.getZona());
+                    tiempo.append(": " +horasTranscurridas +":" +minutosTrancurridos +":" +segsTranscurridos);
+                    calle.append(": " +marcador.getCalle());
+                    zona.append(": " +marcador.getZona());
                 }
                 return true;
             }
@@ -611,7 +610,7 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private void habilitarBoton() {
         btnAceptar.setEnabled(true);
-        btnAceptar.setTextColor(Color.WHITE);
+        //btnAceptar.setTextColor(Color.WHITE);
     }
 
     private String obtenerFecha (String formato) {
@@ -708,7 +707,7 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     public static void obtenerPreferencias (SharedPreferences preferences) {
-        String tiempo = preferences.getString("tiempoMarcadores", "15 minutos");
+        String tiempo = preferences.getString("tiempoMarcadores","15 minutos");
 
         if (tiempo.equalsIgnoreCase("5 minutos")) {
             duracionMarcador = 300000;

@@ -14,7 +14,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.easyparking.Usuarios.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -42,13 +44,15 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        buttonRegister = (Button) findViewById(R.id.check_button);
-        editTextEmail = (EditText) findViewById(R.id.check_email);
-        editTextPass = (EditText) findViewById(R.id.check_password);
-        editTextNombre = (EditText) findViewById(R.id.check_nombre);
-        editTextPass2 = (EditText) findViewById(R.id.check_password2);
-        textViewErrorPass = (TextView) findViewById(R.id.errorPass);
-        textViewErrorEmail = (TextView) findViewById(R.id.errorEmail);
+        setToolbar(); //Setear Toolbar como action bar
+
+        buttonRegister = findViewById(R.id.check_button);
+        editTextEmail = findViewById(R.id.check_email);
+        editTextPass =  findViewById(R.id.check_password);
+        editTextNombre = findViewById(R.id.check_nombre);
+        editTextPass2 = findViewById(R.id.check_password2);
+        textViewErrorPass = findViewById(R.id.errorPass);
+        textViewErrorEmail = findViewById(R.id.errorEmail);
 
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("usuarios");
@@ -66,19 +70,19 @@ public class RegisterActivity extends AppCompatActivity {
                         if (password.length() > 6) { //Si la contraseña tiene más de 6 caracteres
                             registrar(email, password, nombre);
                         } else {
-                            textViewErrorPass.setText("La contraseña tiene que tener al menos 6 caracteres");
-                            editTextPass2.requestFocus();
+                            textViewErrorPass.setText(R.string.error_contraseña_caracteres);
+                            editTextPass.requestFocus();
                             textViewErrorEmail.setText("");
                         }
 
                     } else {
-                        textViewErrorPass.setText("Las dos contraseñas deben de ser iguales");
+                        textViewErrorPass.setText(R.string.error_contraseñas_iguales);
                         editTextPass2.requestFocus();
                         textViewErrorEmail.setText("");
                     }
 
                 } else {
-                    textViewErrorEmail.setText("Email no válido");
+                    textViewErrorEmail.setText(R.string.email_no_valido);
                     editTextEmail.requestFocus();
                     textViewErrorPass.setText("");
                 }
@@ -154,6 +158,21 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    private void setToolbar() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        final ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return false;
+    }
+
     //Metodo para validar el email
     private boolean validarEmail (String email) {
         Pattern pattern = Patterns.EMAIL_ADDRESS;
@@ -186,16 +205,16 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) { //Si se puede enviar el correo de verificación al usuario
                                 AlertDialog.Builder emailVerification = new AlertDialog.Builder(RegisterActivity.this);
-                                emailVerification.setMessage("Se le enviará un email a la dirección especificada para verificar la cuenta")
+                                emailVerification.setMessage(R.string.verificar_email_mensaje)
                                     .setCancelable(false)
-                                    .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                    .setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             finish();
                                         }
                                     });
                                 AlertDialog titulo = emailVerification.create();
-                                titulo.setTitle("Verificar la cuenta");
+                                titulo.setTitle(R.string.verificar_cuenta);
                                 titulo.show();
                                 //Escribir el usuario en la base de datos
                                 Usuario usuario = new Usuario(nombre, email);
@@ -206,16 +225,16 @@ public class RegisterActivity extends AppCompatActivity {
                                 user.updateProfile(profileChangeRequest);
                             } else { //Si no se puede mandar el correo de verificación al usuario
                                 AlertDialog.Builder emailVerification = new AlertDialog.Builder(RegisterActivity.this);
-                                emailVerification.setMessage("No se ha podido enviar el correo de verificación al email especificado")
+                                emailVerification.setMessage(R.string.verificar_email_mensaje_error)
                                     .setCancelable(false)
-                                    .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                    .setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             dialog.cancel();
                                         }
                                     });
                                 AlertDialog titulo = emailVerification.create();
-                                titulo.setTitle("Verificar la cuenta");
+                                titulo.setTitle(R.string.verificar_cuenta);
                                 titulo.show();
                             }
                             mDialog.dismiss();
@@ -223,7 +242,7 @@ public class RegisterActivity extends AppCompatActivity {
                     });
                 } else {
                     //Controlar que el email no este ya registrado
-                    textViewErrorEmail.setText("La dirección de email ya está siendo usada por otra cuenta");
+                    textViewErrorEmail.setText(R.string.error_email_usado);
                     editTextEmail.requestFocus();
                     textViewErrorPass.setText("");
                     mDialog.dismiss();

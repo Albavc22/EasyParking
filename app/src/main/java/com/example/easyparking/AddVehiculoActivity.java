@@ -1,7 +1,6 @@
 package com.example.easyparking;
 
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -39,9 +38,9 @@ public class AddVehiculoActivity extends AppCompatActivity {
 
         setToolbar(); //Setear Toolbar como action bar
 
-        editTextModelo = (EditText) findViewById(R.id.modelo);
-        editTextMatricula = (EditText) findViewById(R.id.matricula);
-        addVehiculo = (Button) findViewById(R.id.add_vehiculo);
+        editTextModelo = findViewById(R.id.modelo);
+        editTextMatricula = findViewById(R.id.matricula);
+        addVehiculo = findViewById(R.id.add_vehiculo);
 
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("usuarios");
@@ -93,16 +92,16 @@ public class AddVehiculoActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             AlertDialog.Builder emailVerification = new AlertDialog.Builder(AddVehiculoActivity.this);
-                            emailVerification.setMessage("El vehículo ha sido añadido con éxito")
+                            emailVerification.setMessage(R.string.mensaje_exito)
                                     .setCancelable(false)
-                                    .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                    .setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             finish();
                                         }
                                     });
                             AlertDialog titulo = emailVerification.create();
-                            titulo.setTitle("Añadir vehículo");
+                            titulo.setTitle(R.string.title_activity_add_vehiculo);
                             titulo.show();
                         }
                     }
@@ -129,10 +128,10 @@ public class AddVehiculoActivity extends AppCompatActivity {
     private void habilitarBoton () {
         if ((!editTextMatricula.getText().toString().isEmpty()) && (!editTextModelo.getText().toString().isEmpty())) {
             addVehiculo.setEnabled(true);
-            addVehiculo.setTextColor(Color.WHITE);
+            //addVehiculo.setTextColor(Color.WHITE);
         } else {
             addVehiculo.setEnabled(false);
-            addVehiculo.setTextColor(Color.parseColor("#9E9E9E"));
+            //addVehiculo.setTextColor(Color.parseColor("#9E9E9E"));
         }
     }
 }

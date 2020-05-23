@@ -3,64 +3,66 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_bright">
+    android:background="@color/colorBackgroud">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/titulo_dialog"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
         android:textSize="28dp"
-        android:text="Aparcamiento libre"
-        android:textAlignment="center"
-        android:textStyle="bold"/>
+        android:text="@string/aparcamiento_libre"
+        android:textAlignment="center"/>
 
-    <View
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
-        android:background="@android:color/darker_gray" />
+        android:background="@android:color/white">
 
-    <TextView
-        android:id="@+id/tiempo_libre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="100dp"
-        android:textSize="20dp"/>
+        <TextView
+            android:id="@+id/tiempo_libre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            android:text="@string/tiempo_libre"/>
 
-    <TextView
-        android:id="@+id/calle_libre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="140dp"
-        android:textSize="20dp"/>
+        <TextView
+            android:id="@+id/calle_libre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="50dp"
+            android:textSize="20dp"
+            android:text="@string/calle"/>
 
-    <TextView
-        android:id="@+id/zona_libre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="180dp"
-        android:textSize="20dp"/>
+        <TextView
+            android:id="@+id/zona_libre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="90dp"
+            android:textSize="20dp"
+            android:text="@string/zona"
+            android:layout_marginBottom="10dp"/>
+
+    </RelativeLayout>
 
     <Button
         android:id="@+id/aceptar"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="210dp"
-        android:layout_marginLeft="240dp"
-        android:layout_marginBottom="10dp"
-        android:background="@android:color/holo_blue_bright"
-        android:text="ACEPTAR"
-        android:textColor="@android:color/white"
+        android:layout_marginTop="230dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/round_button"
+        android:text="@string/aceptar"
+        android:textColor="@drawable/round_button_text"
         android:textStyle="bold" />
 
 </RelativeLayout>

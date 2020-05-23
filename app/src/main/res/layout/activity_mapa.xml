@@ -9,7 +9,6 @@
     android:fitsSystemWindows="true"
     tools:context=".MapaActivity">
 
-
     <!-- Contenido Principal -->
     <include layout="@layout/main_context" />
 

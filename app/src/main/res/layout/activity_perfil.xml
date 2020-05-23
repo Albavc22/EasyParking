@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_bright"
+    android:background="@color/colorBackgroud"
     tools:context=".PerfilActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -15,7 +15,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/title_activity_perfil"/>
+        app:title="@string/cuenta_item"/>
 
     <!-- Imagen de perfil -->
     <de.hdodenhof.circleimageview.CircleImageView
@@ -30,100 +30,106 @@
 
     <Button
         android:id="@+id/cambiar_foto"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="185dp"
-        android:text="Cambiar foto de perfil"
-        android:background="@android:color/holo_blue_bright"
-        android:textColor="@android:color/white"
+        android:text="@string/cambiar_foto"
+        android:background="@drawable/round_button"
+        android:textColor="@drawable/round_button_text"
         android:textStyle="bold"
         style="@style/Widget.AppCompat.Button.Borderless"/>
 
-    <TextView
-        android:id="@+id/textView_nombre"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="242dp"
-        android:text="Nombre"
-        android:textColor="@android:color/black" />
+        android:layout_marginTop="260dp"
+        android:background="@android:color/white">
 
-    <EditText
-        android:id="@+id/editText_nombre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="262dp"
-        android:layout_marginEnd="20dp"
-        android:singleLine="true"
-        android:inputType="textPersonName"/>
+        <TextView
+            android:id="@+id/textView_nombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/nombre"
+            android:textColor="@android:color/black" />
 
-    <TextView
-        android:id="@+id/textView_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="330dp"
-        android:text="Email"
-        android:textColor="@android:color/black" />
+        <EditText
+            android:id="@+id/editText_nombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
+            android:singleLine="true"
+            android:inputType="textPersonName"/>
 
-    <EditText
-        android:id="@+id/editText_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="350dp"
-        android:layout_marginEnd="20dp"
-        android:singleLine="true"
-        android:inputType="textEmailAddress"/>
+        <TextView
+            android:id="@+id/textView_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="100dp"
+            android:text="@string/email"
+            android:textColor="@android:color/black" />
 
-    <TextView
-        android:id="@+id/errorEmail"
-        android:textColor="@android:color/holo_red_light"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="390dp"/>
+        <EditText
+            android:id="@+id/editText_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="120dp"
+            android:layout_marginEnd="20dp"
+            android:singleLine="true"
+            android:inputType="textEmailAddress"/>
+
+        <TextView
+            android:id="@+id/errorEmail"
+            android:textColor="@android:color/holo_red_light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="160dp"
+            android:layout_marginBottom="5dp"/>
+    </RelativeLayout>
 
     <Button
         android:id="@+id/eliminar_cuenta"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="430dp"
-        android:text="Eliminar cuenta"
-        android:background="@android:color/holo_blue_bright"
-        android:textColor="@android:color/white"
+        android:layout_marginTop="480dp"
+        android:text="@string/eliminar_cuenta"
+        android:background="@drawable/round_button"
+        android:textColor="@drawable/round_button_text"
         android:textStyle="bold"
         style="@style/Widget.AppCompat.Button.Borderless"/>
 
     <Button
         android:id="@+id/cambiar_password"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="500dp"
-        android:text="Cambiar contraseña"
-        android:background="@android:color/holo_blue_bright"
-        android:textColor="@android:color/white"
+        android:layout_marginTop="560dp"
+        android:text="@string/cambiar_contraseña"
+        android:background="@drawable/round_button"
+        android:textColor="@drawable/round_button_text"
         android:textStyle="bold"
         style="@style/Widget.AppCompat.Button.Borderless"/>
 

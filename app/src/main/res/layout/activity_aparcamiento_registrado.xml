@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_bright"
+    android:background="@color/colorBackgroud"
     tools:context=".AparcamientoRegistradoActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -25,7 +25,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="30dp"
         android:layout_marginTop="80dp"
-        android:text="DATOS DEL ESTACIONAMIENTO"
+        android:text="@string/datos_estacionamiento"
         android:textSize="18dp"
         android:textColor="@android:color/black" />
 
@@ -43,7 +43,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="25dp"
             android:layout_marginTop="10dp"
-            android:text="Matrícula del vehículo estacionado"
+            android:text="@string/matricula_estacionado"
             android:textSize="16dp"
             android:textColor="@android:color/black" />
 
@@ -66,7 +66,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="25dp"
             android:layout_marginTop="75dp"
-            android:text="Modelo del vehículo estacionado"
+            android:text="@string/modelo_estacionado"
             android:textSize="16dp"
             android:textColor="@android:color/black" />
 
@@ -90,7 +90,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="25dp"
             android:layout_marginTop="140dp"
-            android:text="Fecha del estacionamiento"
+            android:text="@string/fecha_estacionamiento"
             android:textSize="16dp"
             android:textColor="@android:color/black" />
 
@@ -114,7 +114,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="25dp"
             android:layout_marginTop="205dp"
-            android:text="Hora del estacionamiento"
+            android:text="@string/hora_estacionamiento"
             android:textSize="16dp"
             android:textColor="@android:color/black" />
 
@@ -138,7 +138,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="25dp"
             android:layout_marginTop="270dp"
-            android:text="Calle del estacionamiento"
+            android:text="@string/calle_estacionamiento"
             android:textSize="16dp"
             android:textColor="@android:color/black" />
 
@@ -162,7 +162,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="25dp"
             android:layout_marginTop="335dp"
-            android:text="Zona del estacionamiento"
+            android:text="@string/zona_estacionamiento"
             android:textSize="16dp"
             android:textColor="@android:color/black" />
 
@@ -182,13 +182,13 @@
     <Button
         android:id="@+id/finalizar_estacionamiento"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="560dp"
         android:layout_centerHorizontal="true"
-        android:background="@android:color/holo_blue_bright"
-        android:text="FINALIZAR ESTACIONAMIENTO"
-        android:textColor="@android:color/white"
+        android:background="@drawable/round_button"
+        android:text="@string/finalizar_estacionamiento"
+        android:textColor="@drawable/round_button_text"
         android:textStyle="bold"
         android:textSize="16dp"/>
 

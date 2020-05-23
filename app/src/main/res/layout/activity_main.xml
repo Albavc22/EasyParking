@@ -5,101 +5,85 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="15dp"
-    android:background="@android:color/holo_blue_bright"
+    android:background="@color/colorBackgroud"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/inciar_sesion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="46dp"
-        android:layout_marginEnd="84dp"
-        android:text="Iniciar sesión"
-        android:textAlignment="center"
-        android:textSize="30dp"
-        android:textStyle="bold" />
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/iniciar_sesion"/>
 
-    <EditText
-        android:id="@+id/login_email"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="151dp"
-        android:layout_marginEnd="5dp"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:singleLine="true" />
+        android:layout_marginTop="100dp"
+        android:background="@android:color/white">
 
-    <EditText
-        android:id="@+id/login_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="-1dp"
-        android:layout_marginTop="238dp"
-        android:layout_marginEnd="0dp"
-        android:hint="Contraseña"
-        android:inputType="textPassword"
-        android:singleLine="true" />
+        <EditText
+            android:id="@+id/login_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/login_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:hint="@string/title_activity_password"
+            android:inputType="textPassword"
+            android:singleLine="true" />
+    </RelativeLayout>
 
     <Button
         android:id="@+id/signin_button"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/login_email"
-        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="158dp"
-        android:layout_marginTop="157dp"
-        android:background="@android:color/holo_blue_bright"
+        android:layout_marginTop="280dp"
+        android:background="@drawable/round_button"
         android:enabled="false"
-        android:text="ENTRAR"
-        android:textColor="@android:color/darker_gray"
+        android:text="@string/entrar"
+        android:textColor="@drawable/round_button_text"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/register_button"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/signin_button"
-        android:layout_centerInParent="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="54dp"
-        android:background="@android:color/holo_blue_bright"
-        android:text="CREAR UNA NUEVA CUENTA"
-        android:textColor="@android:color/white"
+        android:layout_marginTop="360dp"
+        android:background="@drawable/round_button"
+        android:text="@string/nueva_cuenta"
+        android:textColor="@drawable/round_button_text"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/password_button"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/register_button"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="34dp"
-        android:background="@android:color/holo_blue_bright"
-        android:text="HE OLVIDADO MI CONTRASEÑA"
-        android:textColor="@android:color/white"
+        android:layout_marginTop="440dp"
+        android:background="@drawable/round_button"
+        android:text="@string/contraseña_olvidada"
+        android:textColor="@drawable/round_button_text"
         android:textStyle="bold" />
 </RelativeLayout>

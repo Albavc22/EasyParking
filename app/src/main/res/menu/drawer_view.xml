@@ -28,7 +28,7 @@
                 <item
                     android:id="@+id/nav_switch"
                     android:icon="@drawable/ic_satellite"
-                    android:title="Vista satélite"
+                    android:title="@string/vista_satelite"
                     app:actionLayout="@layout/use_switch"
                     app:showAsAction="always" />
                 <item
@@ -40,9 +40,9 @@
                     android:icon="@drawable/cuenta"
                     android:title="@string/cuenta_item" />
                 <item
-                    android:id="@+id/nav_notificaciones"
-                    android:icon="@drawable/notificaciones"
-                    android:title="@string/notificaciones_item" />
+                    android:id="@+id/nav_ayuda"
+                    android:icon="@drawable/ayuda"
+                    android:title="@string/ayuda_item" />
                 <item
                     android:id="@+id/nav_log_out"
                     android:icon="@drawable/cerrar_sesion"

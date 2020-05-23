@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_bright"
+    android:background="@color/colorBackgroud"
     tools:context=".DatosParkingActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -25,7 +25,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="30dp"
         android:layout_marginTop="80dp"
-        android:text="DATOS DEL PARKING"
+        android:text="@string/datos_parking"
         android:textSize="18dp"
         android:textColor="@android:color/black" />
 
@@ -43,7 +43,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="25dp"
             android:layout_marginTop="10dp"
-            android:text="Nombre"
+            android:text="@string/nombre"
             android:textSize="16dp"
             android:textColor="@android:color/black" />
 
@@ -66,7 +66,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="25dp"
             android:layout_marginTop="75dp"
-            android:text="Calle"
+            android:text="@string/calle"
             android:textSize="16dp"
             android:textColor="@android:color/black" />
 
@@ -90,7 +90,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="25dp"
             android:layout_marginTop="140dp"
-            android:text="Precio por hora"
+            android:text="@string/precio_hora"
             android:textSize="16dp"
             android:textColor="@android:color/black" />
 
@@ -114,7 +114,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="25dp"
             android:layout_marginTop="205dp"
-            android:text="Horario de apertura"
+            android:text="@string/horario_apertura"
             android:textSize="16dp"
             android:textColor="@android:color/black" />
 
@@ -134,13 +134,13 @@
     <Button
         android:id="@+id/iniciar_estacionamiento"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="430dp"
         android:layout_centerHorizontal="true"
-        android:background="@android:color/holo_blue_bright"
-        android:text="INICIAR ESTACIONAMIENTO"
-        android:textColor="@android:color/white"
+        android:background="@drawable/round_button"
+        android:text="@string/iniciar_estacionamiento_item"
+        android:textColor="@drawable/round_button_text"
         android:textStyle="bold"
         android:textSize="16dp"/>
 

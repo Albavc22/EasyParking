@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_bright"
+    android:background="@color/colorBackgroud"
     tools:context=".AddVehiculoActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -24,15 +24,15 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="89dp"
-        android:text="DATOS DEL VEHÍCULO"
+        android:layout_marginTop="80dp"
+        android:text="@string/datos_vehiculo"
         android:textSize="18dp"
         android:textColor="@android:color/black" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="125dp"
+        android:layout_marginTop="115dp"
         android:background="@android:color/white">
 
         <TextView
@@ -43,7 +43,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="25dp"
             android:layout_marginTop="10dp"
-            android:text="Matrícula"
+            android:text="@string/matricula"
             android:textSize="16dp"
             android:textColor="@android:color/black" />
 
@@ -59,7 +59,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="20dp"
-            android:hint="Matrícula"
+            android:hint="@string/matricula"
             android:singleLine="true" />
 
         <TextView
@@ -70,7 +70,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="25dp"
             android:layout_marginTop="90dp"
-            android:text="Modelo"
+            android:text="@string/modelo"
             android:textSize="16dp"
             android:textColor="@android:color/black" />
 
@@ -78,29 +78,26 @@
             android:id="@+id/modelo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
+            android:layout_marginBottom="10dp"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="20dp"
             android:layout_marginTop="110dp"
             android:layout_marginEnd="20dp"
-            android:hint="Modelo"
+            android:hint="@string/modelo"
             android:singleLine="true" />
     </RelativeLayout>
 
     <Button
         android:id="@+id/add_vehiculo"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="320dp"
         android:layout_centerHorizontal="true"
-        android:background="@android:color/holo_blue_bright"
+        android:background="@drawable/round_button"
         android:enabled="false"
-        android:text="AÑADIR VEHÍCULO"
-        android:textColor="@android:color/darker_gray"
+        android:text="@string/añadir_vehiculo"
+        android:textColor="@drawable/round_button_text"
         android:textStyle="bold"
         android:textSize="16dp"/>
 

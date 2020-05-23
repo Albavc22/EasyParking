@@ -3,83 +3,84 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_bright">
+    android:background="@color/colorBackgroud">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/titulo_dialog"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
         android:textSize="28dp"
-        android:text="Datos del pago"
-        android:textAlignment="center"
-        android:textStyle="bold"/>
+        android:text="@string/datos_pago"
+        android:textAlignment="center"/>
 
-    <View
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
-        android:background="@android:color/darker_gray" />
+        android:background="@android:color/white">
 
-    <TextView
-        android:id="@+id/zona_pago"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="100dp"
-        android:textSize="20dp"/>
-
-    <TextView
-        android:id="@+id/precio_hora"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="140dp"
-        android:textSize="20dp"/>
-
-    <TextView
-        android:id="@+id/duracion_estacionamiento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="180dp"
-        android:textSize="20dp"/>
-
-    <TextView
-        android:id="@+id/precio_total"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="220dp"
-        android:textSize="20dp"/>
-
-    <LinearLayout
-        android:layout_marginTop="270dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
+        <TextView
+            android:id="@+id/zona_pago"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnCancelar"
-            android:layout_weight="1"
-            android:background="@android:color/holo_blue_bright"
-            android:textColor="@android:color/white"
-            android:text="CANCELAR" />
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            android:text="@string/zona"/>
 
-        <Button
+        <TextView
+            android:id="@+id/precio_hora"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnRealizarPago"
-            android:layout_weight="1"
-            android:background="@android:color/holo_blue_bright"
-            android:textColor="@android:color/white"
-            android:text="REALIZAR EL PAGO"/>
-    </LinearLayout>
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="50dp"
+            android:textSize="20dp"
+            android:text="@string/precio_hora"/>
+
+        <TextView
+            android:id="@+id/duracion_estacionamiento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="90dp"
+            android:textSize="20dp"
+            android:text="@string/tiempo_estacionado"/>
+
+        <TextView
+            android:id="@+id/precio_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="130dp"
+            android:textSize="20dp"
+            android:text="@string/total_pagar"
+            android:layout_marginBottom="20dp"/>
+
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="300dp"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnCancelar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="350dp"
+        android:background="@drawable/round_button"
+        android:textColor="@drawable/round_button_text"
+        android:text="@string/cancelar"
+        android:layout_marginBottom="20dp"/>
+
+    <Button
+        android:layout_width="300dp"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnRealizarPago"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="280dp"
+        android:background="@drawable/round_button"
+        android:textColor="@drawable/round_button_text"
+        android:text="@string/realizar_pago"/>
 </RelativeLayout>

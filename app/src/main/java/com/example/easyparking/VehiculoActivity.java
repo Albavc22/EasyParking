@@ -40,7 +40,7 @@ public class VehiculoActivity extends AppCompatActivity {
     DatabaseReference myRef;
     FirebaseUser user;
 
-    TextView textViewInfo1, textViewInfo2;
+    TextView textViewInfo1, textViewInfo2, textViewTitulo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +49,12 @@ public class VehiculoActivity extends AppCompatActivity {
 
         setToolbar(); //Setear Toolbar como action bar
 
-        textViewInfo1 = (TextView) findViewById(R.id.info1);
-        textViewInfo2 = (TextView) findViewById(R.id.info2);
+        textViewInfo1 = findViewById(R.id.info1);
+        textViewInfo2 = findViewById(R.id.info2);
+        textViewTitulo = findViewById(R.id.textView_datos);
 
-        textViewInfo1.setText("Todavía no has añadido ningún vehículo");
-        textViewInfo2.setText("Añadir un vehículo para comenzar");
+        textViewInfo1.setText(R.string.no_vehiculos_texto1);
+        textViewInfo2.setText(R.string.no_vehiculos_texto2);
 
         rv = findViewById(R.id.recycler);
         rv.setLayoutManager(new LinearLayoutManager(this));
@@ -86,11 +87,13 @@ public class VehiculoActivity extends AppCompatActivity {
                 }
                 adapter.notifyDataSetChanged();
                 if (dataSnapshot.exists()) {
+                    textViewTitulo.setText(R.string.vehiculos_registrados);
                     textViewInfo1.setText("");
                     textViewInfo2.setText("");
                 } else {
-                    textViewInfo1.setText("Todavía no has añadido ningún vehículo");
-                    textViewInfo2.setText("Añadir un vehículo para comenzar");
+                    textViewInfo1.setText(R.string.no_vehiculos_texto1);
+                    textViewInfo2.setText(R.string.no_vehiculos_texto2);
+                    textViewTitulo.setText("");
                 }
             }
 

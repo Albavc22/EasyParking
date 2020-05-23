@@ -2,12 +2,12 @@
 <resources>
 
     <array name="duracion_marcadores">
-        <item>5 minutos</item>
-        <item>10 minutos</item>
-        <item>15 minutos</item>
-        <item>20 minutos</item>
-        <item>30 minutos</item>
-        <item>1 hora</item>
+        <item>@string/cinco_minutos</item>
+        <item>@string/diez_minutos</item>
+        <item>@string/quince_minutos</item>
+        <item>@string/veinte_minutos</item>
+        <item>@string/treinta_minutos</item>
+        <item>@string/una_hora</item>
     </array>
 
 </resources>

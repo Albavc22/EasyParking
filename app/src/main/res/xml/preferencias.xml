@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="MARCADORES">
+    <PreferenceCategory android:title="@string/marcadores">
         <ListPreference
             android:key="tiempoMarcadores"
-            android:title="Duración Marcadores"
-            android:summary="Seleccione el tiempo durante el que quiere que aparezcan los marcadores"
+            android:title="@string/duracion_marcadores"
+            android:summary="@string/textoPreferencias"
             android:entries="@array/duracion_marcadores"
             android:icon="@drawable/estacionamientos_curso"
             android:entryValues="@array/duracion_marcadores"/>

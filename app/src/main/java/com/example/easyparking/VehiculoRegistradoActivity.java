@@ -59,16 +59,16 @@ public class VehiculoRegistradoActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             AlertDialog.Builder emailVerification = new AlertDialog.Builder(VehiculoRegistradoActivity.this);
-                            emailVerification.setMessage("El vehículo ha sido eliminado con éxito")
+                            emailVerification.setMessage(R.string.eliminar_vehiculo_mensaje)
                                     .setCancelable(false)
-                                    .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                    .setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             finish();
                                         }
                                     });
                             AlertDialog titulo = emailVerification.create();
-                            titulo.setTitle("Eliminar vehículo");
+                            titulo.setTitle(R.string.eliminar_vehiculo);
                             titulo.show();
                         }
                     }

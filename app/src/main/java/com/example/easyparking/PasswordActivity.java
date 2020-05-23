@@ -34,12 +34,12 @@ public class PasswordActivity extends AppCompatActivity {
 
         setToolbar(); //Setear Toolbar como action bar
 
-        errorPassActual = (TextView) findViewById(R.id.errorPass_actual);
-        errorPassNueva = (TextView) findViewById(R.id.errorPass_nueva);
-        errorPasNueva2 = (TextView) findViewById(R.id.errorPass_nueva2);
-        passActual = (EditText) findViewById(R.id.pass_actual);
-        passNueva = (EditText) findViewById(R.id.pass_nueva);
-        passNueva2 = (EditText) findViewById(R.id.pass_nueva2);
+        errorPassActual = findViewById(R.id.errorPass_actual);
+        errorPassNueva = findViewById(R.id.errorPass_nueva);
+        errorPasNueva2 = findViewById(R.id.errorPass_nueva2);
+        passActual = findViewById(R.id.pass_actual);
+        passNueva = findViewById(R.id.pass_nueva);
+        passNueva2 = findViewById(R.id.pass_nueva2);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
     }
@@ -81,35 +81,35 @@ public class PasswordActivity extends AppCompatActivity {
         //Comprobar que ninguno de los tres editText esta vacio
         if ((passActual.getText().toString().isEmpty()) || (passNueva.getText().toString().isEmpty()) || (passNueva2.getText().toString().isEmpty())) {
             if (passActual.getText().toString().isEmpty()) {
-                errorPassActual.setText("Este campo es obligatorio");
+                errorPassActual.setText(R.string.campo_obligatorio);
                 passActual.requestFocus();
             } else {
                 errorPassActual.setText("");
             }
 
             if (passNueva.getText().toString().isEmpty()) {
-                errorPassNueva.setText("Este campo es obligatorio");
+                errorPassNueva.setText(R.string.campo_obligatorio);
                 passNueva.requestFocus();
             } else {
                 errorPassNueva.setText("");
             }
 
             if (passNueva2.getText().toString().isEmpty()) {
-                errorPasNueva2.setText("Este campo es obligatorio");
+                errorPasNueva2.setText(R.string.campo_obligatorio);
                 passNueva2.requestFocus();
             } else {
                 errorPasNueva2.setText("");
             }
         } else if (!(passNueva.getText().toString()).equalsIgnoreCase(passNueva2.getText().toString())){ //Si las contraseñas no son iguales
-            errorPasNueva2.setText("Las dos contraseñas deben de ser iguales");
+            errorPasNueva2.setText(R.string.error_contraseñas_iguales);
             errorPassActual.setText("");
             errorPassNueva.setText("");
         } else if (passNueva.getText().toString().length() < 6) {
-            errorPassNueva.setText("La contraseña debe tener al menos 6 caracteres"); //Si la contraseña tiene menos de 6 caracteres
+            errorPassNueva.setText(R.string.error_contraseña_caracteres); //Si la contraseña tiene menos de 6 caracteres
             errorPassActual.setText("");
             errorPasNueva2.setText("");
         } else if ((passActual.getText().toString()).equalsIgnoreCase(passNueva.getText().toString())) { //Si la contraseña actual y la nueva son la misma
-            errorPassNueva.setText("La contraseña actual y la nueva no pueden ser la misma");
+            errorPassNueva.setText(R.string.error_misma_contraseña);
             errorPassActual.setText("");
             errorPasNueva2.setText("");
         } else {
@@ -123,23 +123,23 @@ public class PasswordActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
                                     AlertDialog.Builder emailVerification = new AlertDialog.Builder(PasswordActivity.this);
-                                    emailVerification.setMessage("La contraseña ha sido cambiada con éxito")
+                                    emailVerification.setMessage(R.string.contraseña_correcta)
                                             .setCancelable(false)
-                                            .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                            .setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialog, int which) {
                                                     finish();
                                                 }
                                             });
                                     AlertDialog titulo = emailVerification.create();
-                                    titulo.setTitle("Cambiar contraseña");
+                                    titulo.setTitle(R.string.cambiar_contraseña);
                                     titulo.show();
                                 }
                             }
                         });
                     } else { //Si el usuario no esta autenticado
                         errorPassNueva.setText("");
-                        errorPassActual.setText("La contraseña es incorrecta");
+                        errorPassActual.setText(R.string.contraseña_incorrecta);
                         errorPasNueva2.setText("");
                     }
                 }
