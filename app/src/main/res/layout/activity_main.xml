@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorBackgroud"
-    tools:context=".MainActivity">
+    tools:context=".Controladores.MainActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -83,7 +83,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="440dp"
         android:background="@drawable/round_button"
-        android:text="@string/contraseña_olvidada"
+        android:text="@string/contrasena_olvidada"
         android:textColor="@drawable/round_button_text"
         android:textStyle="bold" />
 </RelativeLayout>

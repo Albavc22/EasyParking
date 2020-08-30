@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackgroud"
-    tools:context=".PerfilActivity">
+    tools:context=".Controladores.PerfilActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -127,7 +127,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="560dp"
-        android:text="@string/cambiar_contraseña"
+        android:text="@string/cambiar_contrasena"
         android:background="@drawable/round_button"
         android:textColor="@drawable/round_button_text"
         android:textStyle="bold"

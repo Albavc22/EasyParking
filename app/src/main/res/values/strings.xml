@@ -65,13 +65,13 @@
     <string name="email">Email</string>
     <string name="entrar">Entrar</string>
     <string name="nueva_cuenta">Crear una nueva cuenta</string>
-    <string name="contraseña_olvidada">He olvidado mi contraseña</string>
+    <string name="contrasena_olvidada">He olvidado mi contraseña</string>
     <string name="send_password_exito">Se ha enviado un correo para restablecer tu contraseña</string>
     <string name="send_password_fallo">No se pudo enviar el correo de restablecer contraseña ya que el email no está registrado</string>
     <string name="email_no_valido">Email no válido</string>
     <string name="error_email_titulo">Email no verificado</string>
     <string name="error_email_mensaje2">La dirección de correo electrónico no ha sido verificada. Verifíquela si quiere acceder a la aplicación</string>
-    <string name="usuario_contraseña_incorrecto">Usuario o contraseña incorrecto</string>
+    <string name="usuario_contrasena_incorrecto">Usuario o contraseña incorrecto</string>
     <string name="fallo_inicio_sesion">Fallo en inicio de sesión</string>
 
     <!-- Activity Mapa -->
@@ -84,15 +84,15 @@
     <string name="listado_parkings">LISTADO DE PARKINGS</string>
 
     <!-- Activity Password -->
-    <string name="contraseña_actual">Contraseña actual</string>
-    <string name="contraseña_nueva">Contraseña nueva</string>
-    <string name="repetir_contraseña_nueva">Repetir contraseña nueva</string>
+    <string name="contrasena_actual">Contraseña actual</string>
+    <string name="contrasena_nueva">Contraseña nueva</string>
+    <string name="repetir_contrasena_nueva">Repetir contraseña nueva</string>
     <string name="campo_obligatorio">Este campo es obligatorio</string>
-    <string name="error_contraseñas_iguales">Las dos contraseñas deben de ser iguales</string>
-    <string name="error_contraseña_caracteres">La contraseña debe tener al menos 6 caracteres</string>
-    <string name="error_misma_contraseña">La contraseña actual y la nueva no pueden ser la misma</string>
-    <string name="contraseña_correcta">La contraseña ha sido cambiada con éxito</string>
-    <string name="contraseña_incorrecta">La contraseña es incorrecta</string>
+    <string name="error_contrasenas_iguales">Las dos contraseñas deben de ser iguales</string>
+    <string name="error_contrasena_caracteres">La contraseña debe tener al menos 6 caracteres</string>
+    <string name="error_misma_contrasena">La contraseña actual y la nueva no pueden ser la misma</string>
+    <string name="contrasena_correcta">La contraseña ha sido cambiada con éxito</string>
+    <string name="contrasena_incorrecta">La contraseña es incorrecta</string>
 
     <!-- Activity PaymenteDetails -->
     <string name="detalles_pago">DETALLES DEL PAGO</string>
@@ -103,7 +103,7 @@
     <!-- Activity Perfil -->
     <string name="cambiar_foto">Cambiar foto de perfil</string>
     <string name="eliminar_cuenta">Eliminar Cuenta</string>
-    <string name="cambiar_contraseña">Cambiar Contraseña</string>
+    <string name="cambiar_contrasena">Cambiar Contraseña</string>
     <string name="eliminar_cuenta_mensaje">¿Está seguro de que desea eliminar la cuenta?</string>
     <string name="datos_cambiado_mensaje">Los datos han sido cambiados correctamente</string>
     <string name="modificar_datos">Modificacion de datos</string>
@@ -114,7 +114,7 @@
 
     <!-- Activity Registrarse -->
     <string name="registrarse">Registrarse</string>
-    <string name="repetir_contraseña">Repetir Contraseña</string>
+    <string name="repetir_contrasena">Repetir Contraseña</string>
 
     <!-- Activity Vehiculo -->
     <string name="vehiculos_registrados">VEHICULOS REGISTRADOS</string>
@@ -141,8 +141,8 @@
     <string name="textoAparcamiento">Indique el vehículo que quiere aparcar</string>
 
     <!-- Dialog RecuperarContraseña -->
-    <string name="recuperar_contraseña">Recuperar Contraseña</string>
-    <string name="textoContraseña">Introduzca su email y le enviaremos un correo para que pueda recuperar su contraseña</string>
+    <string name="recuperar_contrasena">Recuperar Contraseña</string>
+    <string name="textoContrasena">Introduzca su email y le enviaremos un correo para que pueda recuperar su contraseña</string>
     <string name="enviar">Enviar</string>
 
     <!-- Preferencias -->

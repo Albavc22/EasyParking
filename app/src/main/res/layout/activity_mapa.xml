@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".MapaActivity">
+    tools:context=".Controladores.MapaActivity">
 
     <!-- Contenido Principal -->
     <include layout="@layout/main_context" />

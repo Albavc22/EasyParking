@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackgroud"
-    tools:context=".VehiculoActivity">
+    tools:context=".Controladores.VehiculoActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"

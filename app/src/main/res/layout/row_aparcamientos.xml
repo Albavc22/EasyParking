@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:textSize="18dp"
+        android:textSize="17dp"
         android:textColor="@android:color/black"
         android:text="@string/modelo"/>
 
@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:textSize="18dp"
+        android:textSize="17dp"
         android:textColor="@android:color/black"
         android:text="@string/fecha"/>
 
@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:textSize="18dp"
+        android:textSize="17dp"
         android:textColor="@android:color/black"
         android:text="@string/hora"/>
 
@@ -46,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:textSize="18dp"
+        android:textSize="17dp"
         android:textColor="@android:color/black"
         android:text="@string/calle"/>
 
@@ -55,10 +55,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:textSize="18dp"
+        android:textSize="17dp"
         android:textColor="@android:color/black"
-        android:text="@string/zona"
-        android:layout_marginBottom="8dp"/>
+        android:layout_marginBottom="8px"
+        android:text="@string/zona"/>
 
     <View
         android:layout_width="match_parent"
